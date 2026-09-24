@@ -1,0 +1,21 @@
+{
+  "id": "form.contact-sales",
+  "type": "section",
+  "purpose": "A simple lead-capture form page for enterprise/business sales inquiries, embedding a real third-party Tally form.",
+  "measuredFrom": "src/pages/ContactSales/S01TalkToUs.jsx, TallyContactForm.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 4, "const": "Talk to us" },
+      "body": { "type": "string", "maxWords": 24 }
+    },
+    "required": ["headline", "body"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true, "routeRestriction": "contactSalesRouteOnly" },
+  "motion": { "pattern": "static-reveal", "detail": "embedded Tally iframe is a real third-party outbound integration (src/motion/contact-form.js); this is a deliberate exception to the router's no-outbound-links constraint (see registry.manifest.json structuralNotes)", "reducedMotionFallback": "identical" },
+  "thirdPartyEmbed": {
+    "provider": "Tally",
+    "note": "This section embeds a real, live third-party form widget. A generator reusing this section contract for a different brand must swap in that brand's own real form endpoint, never submit to Granola's live Tally form."
+  }
+}

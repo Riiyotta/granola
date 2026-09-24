@@ -1,0 +1,40 @@
+{
+  "id": "hero.marketing",
+  "type": "section",
+  "purpose": "Establish the core product promise (AI meeting notes without a bot) and drive the primary download conversion within the first viewport.",
+  "measuredFrom": "CLONE_SPEC.md §3 (Hero, sections 1a/1b/1c), src/components/Hero.jsx, src/components/hero/*",
+  "content": {
+    "type": "object",
+    "properties": {
+      "badgeLabel": { "type": "string", "maxWords": 2, "const": "New" },
+      "badgeText": { "type": "string", "maxWords": 5 },
+      "headline": { "type": "string", "maxWords": 8 },
+      "subcopyLines": { "type": "array", "maxItems": 2, "items": { "type": "string", "maxWords": 6 } },
+      "ctaLabel": { "type": "string", "maxWords": 4 },
+      "ctaHref": { "type": "string" },
+      "platformsLine": { "type": "string", "maxWords": 6 },
+      "screen2Headline": { "type": "string", "maxWords": 6 },
+      "noteRows": {
+        "type": "array",
+        "maxItems": 3,
+        "items": { "text": { "type": "string", "maxWords": 16 }, "iconAsset": { "type": "string" } }
+      },
+      "appWindowTitle": { "type": "string", "maxWords": 4 }
+    },
+    "required": ["headline", "subcopyLines", "ctaLabel"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "scroll-driven-parallax + gsap-loop",
+    "scrollDriven": "sticky-demo-preview scale/translate on scroll(root), 0-100vh; floating images converge+fade 0-80vh; video-thumb parallax translateY 12%->-45% over 0-120vh",
+    "gsapLoop": "~8.1-8.3s repeating loop: type raw notes (26 chars/s) -> enhance (clip-path reveal, 3.1s power1.in, gradient-text sweep) -> morph into toggle -> switch back",
+    "reducedMotionFallback": "static start transforms; main.scrolled floating-item opacity:0; GSAP loop still plays (not scroll-linked) but see note below",
+    "measuredFrom": "CLONE_SPEC.md §3 Hero motion (A and B), lines ~226-330"
+  },
+  "assetRoles": {
+    "floatingImages": { "role": "lifestyle-photo-set", "aiGeneration": "may-generate-new", "licensing": "Generic abstract/lifestyle imagery (grey/explosion/green-poster), not real identifiable people or logos — safe to regenerate similar variants." },
+    "callVideoClips": { "role": "product-demo-media", "aiGeneration": "must-not-fabricate", "licensing": "15 real named people's video-call clips (jack, camilla, paavan, rob, sirine, naomi, caroline, nickt, sean, clem, jullien, nickfil, will, angus, xiuting) used as product-demo B-roll. Do NOT reproduce real people's likenesses; a generator must substitute synthetic/stock placeholder call clips, never claim these are the same individuals." },
+    "introIcons": { "role": "ui-icon-exact", "aiGeneration": "must-reuse-exact" }
+  }
+}

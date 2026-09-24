@@ -1,0 +1,10 @@
+{
+  "id": "badge",
+  "type": "primitive",
+  "description": "A small pill label, used as the hero 'New' pill and chip swatches in the Chat card.",
+  "measuredFrom": "CLONE_SPEC.md:213-220, 476-480",
+  "props": {
+    "label": { "type": "string", "maxWords": 2 },
+    "swatchColor": { "type": "colorRef", "required": false }
+  }
+}

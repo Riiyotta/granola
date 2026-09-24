@@ -1,0 +1,17 @@
+{
+  "id": "faq.things-worth-noting",
+  "type": "section",
+  "purpose": "Answer pricing/data/compliance objections directly beneath the comparison table, reusing the shared faq-accordion component.",
+  "measuredFrom": "src/pages/Pricing/S04ThingsWorthNoting.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 6 },
+      "faqItems": { "type": "array", "minItems": 5, "maxItems": 12, "items": { "question": { "type": "string", "maxWords": 16 }, "answer": { "type": "string", "maxWords": 80 } } }
+    },
+    "required": ["faqItems"],
+    "additionalProperties": false
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "accordion-expand", "detail": "shared with trust.security-compliance: Radix accordion, 0.2s ease-out height, 300ms chevron", "reducedMotionFallback": "expand/collapse without transition" }
+}

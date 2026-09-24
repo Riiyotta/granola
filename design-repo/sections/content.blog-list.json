@@ -1,0 +1,27 @@
+{
+  "id": "content.blog-list",
+  "type": "section",
+  "purpose": "A filterable index of blog/press posts, the sole content of the Blog route.",
+  "measuredFrom": "src/pages/Blog/S01Blog.jsx, src/motion/blog-filter.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "title": { "type": "string", "maxWords": 2 },
+      "filters": { "type": "array", "items": { "label": { "type": "string", "maxWords": 2 }, "type": { "enum": ["all", "blog", "press"] } } },
+      "posts": {
+        "type": "array",
+        "items": {
+          "title": { "type": "string", "maxWords": 14 },
+          "excerpt": { "type": "string", "maxWords": 30, "required": false },
+          "href": { "type": "string" },
+          "coverImage": { "type": "string", "required": false },
+          "type": { "enum": ["blog", "press"] }
+        }
+      }
+    },
+    "required": ["title", "posts"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true },
+  "motion": { "pattern": "filter-transition", "detail": "list re-filters on chip click via useBlogListFilter", "reducedMotionFallback": "list updates instantly, no transition" }
+}

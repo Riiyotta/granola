@@ -1,0 +1,26 @@
+{
+  "$description": "Citation ledger: which real file/line backs each major decision in this design-repo. Degrades gracefully (warn, not fail) when no sibling source tree is present, per BUILD-GUIDE.md 2.7's entryPoints self-containment rule. Paths are relative to design-repo/'s own location, one level inside granola-clone/.",
+  "citations": [
+    { "claim": "8 real routes, client-side router with inert external links", "source": "../src/router.js", "lines": "1-30" },
+    { "claim": "Home page composition (11 components)", "source": "../src/pages/Home/index.jsx", "lines": "1-30" },
+    { "claim": "Chat page composition (2 sections)", "source": "../src/pages/Chat/index.jsx", "lines": "1-13" },
+    { "claim": "Enterprise page composition (2 sections)", "source": "../src/pages/Enterprise/index.jsx", "lines": "1-13" },
+    { "claim": "Pricing page composition (7 sections)", "source": "../src/pages/Pricing/index.jsx", "lines": "1-22" },
+    { "claim": "Blog page composition (1 section, filterable list shape)", "source": "../src/pages/Blog/index.jsx", "lines": "1-11" },
+    { "claim": "BlogAppleWatch page composition (1 section, long-form article shape)", "source": "../src/pages/BlogAppleWatch/index.jsx", "lines": "1-13" },
+    { "claim": "Jobs page composition (1 multi-zone section)", "source": "../src/pages/Jobs/index.jsx", "lines": "1-11" },
+    { "claim": "ContactSales page composition (1 section)", "source": "../src/pages/ContactSales/index.jsx", "lines": "1-13" },
+    { "claim": "conversion.footer-cta gated per-route via App.jsx PAGES.cta boolean; home and enterprise are false", "source": "../src/App.jsx", "lines": "14-23" },
+    { "claim": "Homepage design tokens (color, typography, radius, elevation, easing, shared button contract)", "source": "../CLONE_SPEC.md", "lines": "1-101" },
+    { "claim": "Homepage section-by-section content and motion contracts (sections 1-14)", "source": "../CLONE_SPEC.md", "lines": "102-644" },
+    { "claim": "Asset inventory, identical/recompressed status, real customer/testimonial identities requiring licensing guidance", "source": "../ASSET_MANIFEST.md", "lines": "1-151" },
+    { "claim": "24 real motion implementation files ground the motion contracts", "source": "../src/motion", "lines": "directory listing, 24 files" },
+    { "claim": "Blog is a filterable list shape (chip filter + grid, useBlogListFilter), distinct from BlogAppleWatch's long-form article shape", "source": "../src/pages/Blog/S01Blog.jsx", "lines": "1-60" },
+    { "claim": "BlogAppleWatch is a long-form article shape (byline, date, share, prose body), distinct from Blog's filterable list", "source": "../src/pages/BlogAppleWatch/S01GranolaForApple.jsx", "lines": "1-60" },
+    { "claim": "Jobs is one continuous multi-zone section (hero + openings-by-category + team proof)", "source": "../src/pages/Jobs/S01BuildToolsThat.jsx", "lines": "1-1033" },
+    { "claim": "ContactSales embeds a real third-party Tally form, a deliberate exception to the no-outbound-links router constraint", "source": "../src/pages/ContactSales/TallyContactForm.jsx", "lines": "1-20" },
+    { "claim": "Enterprise's FAQ accordion directly imports and reuses Pricing's FaqAccordion.jsx component", "source": "../src/pages/Enterprise/S02SecurityAndCompliance.jsx", "lines": "1-4" },
+    { "claim": "src/layout.json is a stale first-draft artifact (missing Pricing section, mismatched component names) and was not used as a build source", "source": "../src/layout.json", "lines": "1-22" }
+  ],
+  "note": "Source paths above are relative to this design-repo's location inside granola-clone/ and only resolve when this folder sits next to its original source tree (as it does during the build). A standalone copy of design-repo/ will not find these files — extraction/verify_all.py's citation check treats a missing sibling source tree as a warning, not a failure."
+}

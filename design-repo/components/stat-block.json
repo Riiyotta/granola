@@ -1,0 +1,11 @@
+{
+  "id": "stat-block",
+  "type": "component",
+  "description": "A labeled icon-tile + text row, used as the base pattern for the nav Features dropdown rows, the how-it-works action-card rows, and the hero note rows.",
+  "composesPrimitives": ["icon"],
+  "props": {
+    "iconTile": { "type": "object", "properties": { "size": "string", "radius": "radiusRef", "bg": "colorRef" } },
+    "title": { "type": "string", "maxWords": 4 },
+    "subtitle": { "type": "string", "maxWords": 14 }
+  }
+}

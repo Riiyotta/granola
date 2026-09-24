@@ -1,0 +1,22 @@
+{
+  "id": "trust.security-compliance",
+  "type": "section",
+  "purpose": "Address enterprise-buyer security/compliance objections (SOC2, SSO, data training policy) via a trust strip and FAQ accordion, reusing the same FAQ component as Pricing.",
+  "measuredFrom": "src/pages/Enterprise/S02SecurityAndCompliance.jsx (imports Pricing/FaqAccordion.jsx directly)",
+  "content": {
+    "type": "object",
+    "properties": {
+      "trustStatement": { "type": "string", "maxWords": 10 },
+      "faqItems": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 10,
+        "items": { "question": { "type": "string", "maxWords": 16 }, "answer": { "type": "string", "maxWords": 80 } }
+      }
+    },
+    "required": ["faqItems"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "maxPerPage": 1 },
+  "motion": { "pattern": "accordion-expand", "detail": "Radix accordion, multiple-open, 0.2s ease-out height, 300ms chevron rotate", "reducedMotionFallback": "expand/collapse without the height transition (instant)" }
+}

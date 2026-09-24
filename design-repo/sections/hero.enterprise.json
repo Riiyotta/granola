@@ -1,0 +1,24 @@
+{
+  "id": "hero.enterprise",
+  "type": "section",
+  "purpose": "Position Granola for enterprise buyers and route them to a sales conversation rather than a self-serve download.",
+  "measuredFrom": "src/pages/Enterprise/S01TurnMeetingNotes.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "kicker": { "type": "string", "maxWords": 4 },
+      "headline": { "type": "string", "maxWords": 8 },
+      "body": { "type": "string", "maxWords": 40 },
+      "ctaLabel": { "type": "string", "maxWords": 3, "const": "Talk to sales" },
+      "ctaHref": { "type": "string" },
+      "heroImage": { "type": "string" }
+    },
+    "required": ["headline", "ctaLabel"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true },
+  "motion": { "pattern": "static-reveal", "reducedMotionFallback": "renders statically" },
+  "assetRoles": {
+    "heroImage": { "role": "abstract-illustration", "aiGeneration": "may-generate-new", "licensing": "Illustrative collage art, not real people/trademarks — safe to regenerate similar variants." }
+  }
+}

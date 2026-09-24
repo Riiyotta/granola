@@ -1,0 +1,12 @@
+{
+  "id": "card-base",
+  "type": "component",
+  "description": "A generic elevated surface container composing radius + shadow + padding tokens. Underlies the chat card, brief card, action card, and pricing CTA card.",
+  "composesPrimitives": [],
+  "props": {
+    "radius": { "type": "radiusRef", "default": "radius-2xl" },
+    "shadow": { "type": "shadowRef" },
+    "bg": { "type": "colorRef", "default": "surface.card-elevated" },
+    "padding": { "type": "string" }
+  }
+}

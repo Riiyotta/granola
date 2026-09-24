@@ -1,0 +1,12 @@
+{
+  "id": "app-window-mockup",
+  "type": "component",
+  "description": "The recurring 'Granola app window' visual (title bar with traffic-light dots + notes body), reused in the hero sticky demo and both how-it-works step-0/step-2 mockups.",
+  "composesPrimitives": ["badge"],
+  "props": {
+    "titleBarLabel": { "type": "string", "maxWords": 4 },
+    "scale": { "type": "number", "default": 1 },
+    "variant": { "type": "enum", "values": ["hero-loop", "hiw-step-0-static", "hiw-step-2-static"], "required": true }
+  },
+  "measuredFrom": "CLONE_SPEC.md §3B (hero GSAP loop), §6 (how-it-works step mockups)"
+}

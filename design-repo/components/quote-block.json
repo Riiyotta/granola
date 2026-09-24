@@ -1,0 +1,12 @@
+{
+  "id": "quote-block",
+  "type": "component",
+  "description": "A blockquote with an attribution line and optional company logo, composing the testimonial card's left column.",
+  "composesPrimitives": ["avatar"],
+  "props": {
+    "quote": { "type": "string", "maxWords": 40 },
+    "attributionName": { "type": "string", "maxWords": 4 },
+    "attributionTitle": { "type": "string", "maxWords": 8, "required": false },
+    "companyLogo": { "type": "assetRef", "required": false }
+  }
+}

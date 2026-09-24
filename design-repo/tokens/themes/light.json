@@ -1,0 +1,30 @@
+{
+  "$description": "Light theme — the only theme observed on the live site (no dark-mode toggle or CSS found). Resolves every semantic token down to a real foundation value. Token resolution order: foundation -> theme-mode overrides -> semantic aliases -> component tokens -> permitted local overrides -> responsive overrides.",
+  "themeId": "light",
+  "isDefault": true,
+  "resolved": {
+    "text.primary": "#292929",
+    "text.primary-inverse": "#fcfcf8",
+    "text.secondary": "#72726e",
+    "text.secondary-strong": "#4e4d4b",
+    "text.tertiary": "#9e9e99",
+    "text.tertiary-alt": "#acada8",
+    "text.body": "#0e0f0c",
+    "text.accent": "#788c15",
+    "surface.page": "#ffffff",
+    "surface.card": "#f7f7f2",
+    "surface.card-elevated": "#ffffff",
+    "surface.tint": "rgba(98,90,34,.06)",
+    "surface.tint-strong": "rgba(86,81,46,.12)",
+    "surface.inverse": "#292929",
+    "surface.brand": "#b2c248",
+    "surface.brand-light": "#d1e043",
+    "border.default": "rgba(71,67,42,.2)",
+    "border.stroke": "#d5d5d2",
+    "border.rule": "#d9d9d9",
+    "fill.accent": "#5b6f00",
+    "fill.accent-hover": "#4c5616",
+    "fill.primary-button": "#292929",
+    "fill.primary-button-hover": "#4e4d4b"
+  }
+}

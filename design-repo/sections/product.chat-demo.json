@@ -1,0 +1,28 @@
+{
+  "id": "product.chat-demo",
+  "type": "section",
+  "purpose": "Showcase the Granola Chat feature via a self-typing prompt-cycling demo card that proves the product 'remembers' meeting context.",
+  "measuredFrom": "CLONE_SPEC.md §7 (Granola Chat), src/components/Chat.jsx, src/motion/chat-cycle.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "kicker": { "type": "string", "maxWords": 3 },
+      "headline": { "type": "string", "maxWords": 4 },
+      "prompts": {
+        "type": "array",
+        "minItems": 4,
+        "maxItems": 4,
+        "items": { "category": { "type": "string", "maxWords": 3 }, "swatchColor": { "type": "string" }, "prompt": { "type": "string", "maxWords": 16 } }
+      }
+    },
+    "required": ["headline", "prompts"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "typewriter-cycle",
+    "detail": "framer-motion stagger typing (~22 chars/s), rest 2400ms with blinking caret, select-highlight 650ms, then swap to next prompt via spring chip remount (bounce .6); ~6.0s per prompt cycle; starts when card >=60% in view",
+    "reducedMotionFallback": "shows first prompt fully typed and selected, no cycling",
+    "measuredFrom": "CLONE_SPEC.md §7"
+  }
+}

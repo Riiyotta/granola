@@ -1,0 +1,10 @@
+{
+  "id": "input",
+  "type": "primitive",
+  "description": "A text input field. Used inside the ask-bar affordance in how-it-works step-2 mockup and the real Tally-embedded contact form (which this design-repo treats as an opaque third-party embed, not a styled form contract).",
+  "measuredFrom": "CLONE_SPEC.md §6 step 2 mockup ('Ask anything' bar), src/pages/ContactSales/TallyContactForm.jsx",
+  "props": {
+    "placeholder": { "type": "string", "maxWords": 4 },
+    "style": { "type": "enum", "values": ["ask-bar"], "required": true }
+  }
+}

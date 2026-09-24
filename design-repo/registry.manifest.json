@@ -1,0 +1,49 @@
+{
+  "repositoryId": "granola-clone-design-repo",
+  "status": "design-review-pending",
+  "productionApproved": false,
+  "defaultTheme": "light",
+  "schemaValidatedThemes": ["light"],
+  "allowlistVersion": "1.0.0",
+  "repositoryVersion": "1.0.0",
+  "pageSpecVersion": "1.0.0",
+  "versionFieldNote": "allowlistVersion is machine-enforced: extraction/verify_all.py check 3 fails the run if tokens/llm/component-allowlist.json's own version drifts from this field. repositoryVersion and pageSpecVersion are documentation-only, hand-maintained markers with nothing checking them automatically.",
+  "counts": {
+    "foundationTokenFiles": 8,
+    "primitives": 7,
+    "components": 6,
+    "sections": 27,
+    "templates": 8,
+    "routes": 8
+  },
+  "structuralNotes": [
+    "The source project's client-side router (src/router.js) intercepts and makes inert every link that does not resolve to one of its 8 real ROUTES — this is a deliberate 'no external requests / no outbound navigation' build constraint, not an oversight.",
+    "The ContactSales route (/contact/sales) is a deliberate, narrow exception: it embeds a real third-party Tally form widget (src/pages/ContactSales/TallyContactForm.jsx), which does submit outbound to a real third-party service. This is documented explicitly in sections/form.contact-sales.json's thirdPartyEmbed field.",
+    "This project's source (the original site) is a real, live, commercial company. Every asset role touching a real logo, a real named person's photo, or a real quote attributed to a real person carries explicit must-not-fabricate / must-reuse-exact licensing guidance in its owning section contract — see sections/social-proof.logo-wall.json, social-proof.testimonials.json, social-proof.tweet-wall.json, content.article-body.json, careers.jobs-page.json, integration.connector-strip.json, feature-grid.marketing.json, and social-proof.logo-marquee.json.",
+    "src/layout.json (found in the source project) is a stale first-draft artifact — it lists an older Home section list missing the Pricing section and uses mismatched component names versus the current src/pages/Home/index.jsx. It was not used as a build source; templates/templates.json was built directly from the real index.jsx files instead."
+  ],
+  "entryPoints": {
+    "readme": "README.md",
+    "changelog": "CHANGELOG.md",
+    "pageSpecSchema": "schema/pagespec.schema.json",
+    "exampleInstance": "schema/example.pagespec.json",
+    "semanticValidator": "schema/semantic_validate.py",
+    "adversarialTests": "schema/tests/adversarial_test.py",
+    "templates": "templates/templates.json",
+    "compatibilityGraph": "compatibility/graph.json",
+    "componentAllowlist": "tokens/llm/component-allowlist.json",
+    "verifyAll": "extraction/verify_all.py",
+    "measuredValues": "extraction/measured-values.json",
+    "foundationTokens": [
+      "tokens/00-foundation/color.json",
+      "tokens/00-foundation/typography.json",
+      "tokens/00-foundation/radius.json",
+      "tokens/00-foundation/elevation.json",
+      "tokens/00-foundation/motion.json",
+      "tokens/00-foundation/breakpoint.json",
+      "tokens/00-foundation/spacing.json",
+      "tokens/00-foundation/icon-size.json"
+    ],
+    "theme": "tokens/themes/light.json"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "social-proof.logo-wall",
+  "type": "section",
+  "purpose": "Establish credibility via recognizable customer logos immediately after the hero.",
+  "measuredFrom": "CLONE_SPEC.md §4 ('For the doers' + logo wall), src/components/Doers.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 3, "const": "For the doers" },
+      "kicker": { "type": "string", "maxWords": 6 },
+      "logos": {
+        "type": "array",
+        "minItems": 6,
+        "maxItems": 12,
+        "items": { "name": { "type": "string" }, "assetPath": { "type": "string" } }
+      }
+    },
+    "required": ["headline", "logos"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "view-timeline-slide-under",
+    "detail": "headline slides down behind a dark block via animation-timeline, range cover 50%",
+    "reducedMotionFallback": "headline renders in final resting position, no slide"
+  },
+  "assetRoles": {
+    "customerLogos": { "role": "real-company-logo", "aiGeneration": "must-not-fabricate", "licensing": "These are 12 real companies' real trademarked logos (PostHog, Intercom, Figma, Brex, Ramp, Replit, Lovable, Cursor, Bumble, Asana, Vanta, Linear). A generator must NEVER fabricate a fake customer logo wall implying endorsement by real companies not actually referenced by the source content; when generating a new page for a different brand, this section must either be omitted or filled with the new site's own real, licensed customer logos." }
+  }
+}

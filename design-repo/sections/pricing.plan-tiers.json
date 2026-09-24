@@ -1,0 +1,28 @@
+{
+  "id": "pricing.plan-tiers",
+  "type": "section",
+  "purpose": "Present the pricing tier lineup (Basic/paid tiers) with per-plan CTAs, the primary conversion surface of the Pricing page.",
+  "measuredFrom": "src/pages/Pricing/S01GranolaHowYou.jsx, PlanCta.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 6 },
+      "subheadline": { "type": "string", "maxWords": 24 },
+      "plans": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 6,
+        "items": {
+          "name": { "type": "string", "maxWords": 2 },
+          "price": { "type": "string" },
+          "ctaLabel": { "type": "string", "maxWords": 4 },
+          "features": { "type": "array", "items": { "type": "string", "maxWords": 12 } }
+        }
+      }
+    },
+    "required": ["headline", "plans"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true },
+  "motion": { "pattern": "static-reveal", "reducedMotionFallback": "renders statically" }
+}

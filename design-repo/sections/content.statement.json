@@ -1,0 +1,14 @@
+{
+  "id": "content.statement",
+  "type": "section",
+  "purpose": "A single-line brand statement bridging the logo wall and the how-it-works deep-dive, restating the product's value across the full meeting lifecycle.",
+  "measuredFrom": "CLONE_SPEC.md §5 ('Granola helps you before, during and after')",
+  "content": {
+    "type": "object",
+    "properties": { "statement": { "type": "string", "maxWords": 14 } },
+    "required": ["statement"],
+    "additionalProperties": false
+  },
+  "constraints": { "maxPerPage": 2, "noConsecutive": true },
+  "motion": { "pattern": "static-reveal", "reducedMotionFallback": "renders statically" }
+}

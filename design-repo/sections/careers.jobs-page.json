@@ -1,0 +1,27 @@
+{
+  "id": "careers.jobs-page",
+  "type": "section",
+  "purpose": "The full careers page: hero statement, open-role listings grouped by category, and team/culture proof — the sole content of the Jobs route, built as one continuous multi-zone section.",
+  "measuredFrom": "src/pages/Jobs/S01BuildToolsThat.jsx (1033 lines, one <section> wrapper with hero -> openings-by-category -> team stats/photos zones), HeroCollage.jsx, LifeGallery.jsx, TeamSection.jsx, teamMembers.js, src/motion/jobs-motion.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 10 },
+      "subheadline": { "type": "string", "maxWords": 30 },
+      "openingsByCategory": {
+        "type": "array",
+        "items": { "category": { "type": "string", "maxWords": 3 }, "roles": { "type": "array", "items": { "title": { "type": "string", "maxWords": 8 }, "location": { "type": "string", "maxWords": 4 }, "href": { "type": "string" } } } }
+      },
+      "teamStats": { "type": "array", "items": { "label": { "type": "string", "maxWords": 4 }, "value": { "type": "string" } } },
+      "teamPhotos": { "type": "array", "items": { "type": "string" } }
+    },
+    "required": ["headline", "openingsByCategory"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true, "routeRestriction": "jobsRouteOnly" },
+  "motion": { "pattern": "jobs-page-interactions", "detail": "see src/motion/jobs-motion.js for hover/reveal micro-interactions on role rows and the life-gallery collage", "reducedMotionFallback": "static layout, no hover reveal micro-interactions" },
+  "assetRoles": {
+    "teamPhotos": { "role": "team-photo", "aiGeneration": "must-not-fabricate", "licensing": "Real named team members' real photos (public/team/) — reuse exactly or omit, never fabricate a fake employee." },
+    "heroCollage": { "role": "abstract-illustration", "aiGeneration": "may-generate-new" }
+  }
+}

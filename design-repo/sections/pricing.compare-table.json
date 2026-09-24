@@ -1,0 +1,18 @@
+{
+  "id": "pricing.compare-table",
+  "type": "section",
+  "purpose": "Let buyers compare every plan's features side-by-side in a sticky-header table.",
+  "measuredFrom": "src/pages/Pricing/S03ComparePlans.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 4, "const": "Compare plans" },
+      "columns": { "type": "array", "minItems": 2, "maxItems": 6, "items": { "type": "string", "maxWords": 2 } },
+      "rows": { "type": "array", "items": { "feature": { "type": "string", "maxWords": 10 }, "values": { "type": "array" } } }
+    },
+    "required": ["headline", "columns", "rows"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "pattern": "sticky-header", "detail": "table thead is position:sticky", "reducedMotionFallback": "identical (not a motion-sensitive effect)" }
+}

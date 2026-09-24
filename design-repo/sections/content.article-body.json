@@ -1,0 +1,31 @@
+{
+  "id": "content.article-body",
+  "type": "section",
+  "purpose": "The full long-form prose body of a single blog article, with author byline, date, and share affordance — the sole content shape of the BlogAppleWatch route.",
+  "measuredFrom": "src/pages/BlogAppleWatch/S01GranolaForApple.jsx, Share.jsx, src/motion/blog-share.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "title": { "type": "string", "maxWords": 10 },
+      "authorName": { "type": "string", "maxWords": 3 },
+      "authorAvatar": { "type": "string" },
+      "publishDate": { "type": "string", "maxWords": 3 },
+      "coverImage": { "type": "string", "required": false },
+      "bodyBlocks": {
+        "type": "array",
+        "items": {
+          "blockType": { "enum": ["paragraph", "heading", "image"] },
+          "text": { "type": "string", "maxWords": 120, "required": false }
+        }
+      }
+    },
+    "required": ["title", "authorName", "bodyBlocks"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true, "routeRestriction": "articleRouteOnly" },
+  "motion": { "pattern": "static-reveal", "detail": "share popover opens on click, no scroll-driven motion in the article body itself", "reducedMotionFallback": "identical" },
+  "assetRoles": {
+    "authorAvatar": { "role": "team-photo", "aiGeneration": "must-not-fabricate", "licensing": "Real named team member's photo (e.g. Jack) — reuse exactly or omit, never fabricate a fake staff member." },
+    "coverImage": { "role": "editorial-photo", "aiGeneration": "may-generate-new" }
+  }
+}

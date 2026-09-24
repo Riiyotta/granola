@@ -1,0 +1,16 @@
+{
+  "id": "faq-accordion",
+  "type": "component",
+  "description": "A Radix-based multi-open accordion of question/answer rows. Shared between the Pricing and Enterprise pages (src/pages/Pricing/FaqAccordion.jsx is imported directly by Enterprise's S02SecurityAndCompliance.jsx).",
+  "measuredFrom": "src/pages/Pricing/FaqAccordion.jsx, src/pages/Enterprise/S02SecurityAndCompliance.jsx, src/motion/pricing-page-collapsible.js",
+  "props": {
+    "items": {
+      "type": "array",
+      "items": {
+        "question": { "type": "string", "maxWords": 16 },
+        "answer": { "type": "string", "maxWords": 80 }
+      }
+    }
+  },
+  "motion": { "heightTransition": "0.2s ease-out", "chevronTransition": "300ms" }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "feature-grid.chat-scenarios",
+  "type": "section",
+  "purpose": "Show 3 concrete chat-usage scenarios (during a meeting, in a folder, across meetings) to make the abstract 'ask anything' promise tangible.",
+  "measuredFrom": "src/pages/Chat/S02AskAway.jsx, src/motion/chatpage-tweets.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 4 },
+      "subheadline": { "type": "string", "maxWords": 20 },
+      "scenarios": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": { "label": { "type": "string", "maxWords": 4 }, "screenshotAsset": { "type": "string" }, "promptAsset": { "type": "string" } }
+      }
+    },
+    "required": ["headline", "scenarios"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "pattern": "static-reveal", "reducedMotionFallback": "renders statically" },
+  "assetRoles": {
+    "screenshots": { "role": "product-ui-screenshot", "aiGeneration": "may-generate-new", "licensing": "Product UI mockups, not real people/trademarks — safe to regenerate similar variants." }
+  }
+}

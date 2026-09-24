@@ -1,0 +1,20 @@
+{
+  "id": "social-proof.tweet-wall",
+  "type": "section",
+  "purpose": "Show broad, high-volume social proof via a masonry wall of embedded tweet-style posts, distinct from the curated few-card testimonials section used on Home.",
+  "measuredFrom": "src/pages/Pricing/S06WhatPeopleAre.jsx, tweets-data.js, src/motion/pricing-page-tweets.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 10 },
+      "tweets": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "author": { "type": "string", "maxWords": 3 }, "body": { "type": "string", "maxWords": 60 } } }
+    },
+    "required": ["headline", "tweets"],
+    "additionalProperties": false
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "masonry-layout", "detail": "CSS columns masonry, 1/2/3 columns at sm/lg; no scroll or hover motion measured beyond link-copy interaction", "reducedMotionFallback": "identical" },
+  "assetRoles": {
+    "tweetBodies": { "role": "real-person-quote", "aiGeneration": "must-not-fabricate", "licensing": "Live site content is real tweets from real people; this clone's tweets-data.js uses placeholder text per the source code's own comment. A generator must use real, permissioned quotes or clearly-fictional placeholder copy, never attribute an invented quote to a real Twitter/X handle." }
+  }
+}

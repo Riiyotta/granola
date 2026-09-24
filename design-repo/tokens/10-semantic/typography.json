@@ -1,0 +1,17 @@
+{
+  "$description": "Semantic typography roles resolving to foundation type-scale/font-family tokens.",
+  "roles": {
+    "heading.display": { "fontFamily": "quadrant", "scale": "displayHeadingScale.big-h2", "usage": "Chat/Features/MCP big section headings" },
+    "heading.hero": { "fontFamily": "quadrant", "scale": "displayHeadingScale.hero-h1", "usage": "hero H1" },
+    "heading.section": { "fontFamily": "quadrant", "scale": "displayHeadingScale.section-h2-medium", "usage": "medium section H2s" },
+    "heading.feature-row": { "fontFamily": "quadrant", "size": "32px", "lineHeight": "1.05", "letterSpacing": "-0.01em", "usage": "feature row h3" },
+    "heading.footer-column": { "fontFamily": "quadrant", "size": "24px", "lineHeight": "0.95", "letterSpacing": "-0.01em" },
+    "kicker": { "fontFamily": "quadrant", "size": "16px", "lineHeight": "24px", "letterSpacing": "0.02em", "usage": "section kicker labels" },
+    "body.default": { "fontFamily": "melange", "scale": "text-lg", "usage": "hero subcopy, standard body" },
+    "body.compact": { "fontFamily": "melange", "scale": "text-base" },
+    "body.large": { "fontFamily": "melange", "size": "22px", "lineHeight": "1.35", "usage": "feature row paragraph" },
+    "label.nav": { "fontFamily": "melange", "scale": "text-base" },
+    "label.button": { "fontFamily": "melange", "size": "16px", "lineHeight": "18px", "letterSpacing": "0.16px", "weight": "book" },
+    "label.button-compact": { "fontFamily": "melange", "size": "14px", "lineHeight": "24px" }
+  }
+}

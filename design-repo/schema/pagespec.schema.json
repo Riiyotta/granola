@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://design-repo.local/schema/pagespec.schema.json",
+  "title": "Granola Clone PageSpec",
+  "description": "The machine contract for a generated page composition against this design-repo.",
+  "type": "object",
+  "properties": {
+    "route": { "type": "string", "minLength": 1 },
+    "template": {
+      "type": "string",
+      "enum": [
+        "template.home", "template.chat", "template.enterprise", "template.pricing",
+        "template.blog-index", "template.article", "template.careers", "template.contact-form"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/node" }
+    }
+  },
+  "required": ["route", "template", "nodes"],
+  "additionalProperties": false,
+  "definitions": {
+    "node": {
+      "type": "object",
+      "properties": {
+        "section": {
+          "type": "string",
+          "enum": [
+            "shell.navbar", "shell.footer", "conversion.footer-cta",
+            "hero.marketing", "social-proof.logo-wall", "content.statement", "explainer.how-it-works",
+            "product.chat-demo", "social-proof.testimonials", "feature-grid.marketing",
+            "integration.connector-strip", "conversion.pricing-cta",
+            "hero.chat-page", "feature-grid.chat-scenarios",
+            "hero.enterprise", "trust.security-compliance",
+            "pricing.plan-tiers", "social-proof.single-quote", "pricing.compare-table",
+            "faq.things-worth-noting", "content.resource-links", "social-proof.tweet-wall",
+            "social-proof.logo-marquee",
+            "content.blog-list", "content.article-body", "careers.jobs-page", "form.contact-sales"
+          ]
+        },
+        "variant": { "type": "string" },
+        "content": { "type": "object" },
+        "motion": { "$ref": "#/definitions/motion" }
+      },
+      "required": ["section", "motion"],
+      "additionalProperties": false
+    },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "pattern": { "type": "string" },
+        "reducedMotionFallback": { "type": "string", "minLength": 1 }
+      },
+      "required": ["reducedMotionFallback"],
+      "additionalProperties": false
+    }
+  }
+}

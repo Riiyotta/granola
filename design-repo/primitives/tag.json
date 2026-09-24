@@ -1,0 +1,11 @@
+{
+  "id": "tag",
+  "type": "primitive",
+  "description": "A filterable chip/tag, used in the Blog type filter (All/Blog/Press) and the Chat card's category chip.",
+  "measuredFrom": "src/pages/Blog/S01Blog.jsx, src/motion/blog-filter.js",
+  "props": {
+    "label": { "type": "string", "maxWords": 2 },
+    "active": { "type": "boolean", "default": false },
+    "iconColor": { "type": "colorRef", "required": false }
+  }
+}

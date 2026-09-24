@@ -1,0 +1,34 @@
+{
+  "id": "feature-grid.marketing",
+  "type": "section",
+  "purpose": "Detail 5 core product capabilities, each with a header/body pair and supporting image tile(s), to build feature-level conviction after the emotional/social-proof sections.",
+  "measuredFrom": "CLONE_SPEC.md §9 (Features), src/components/Features.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "kicker": { "type": "string", "maxWords": 2, "const": "Features" },
+      "headline": { "type": "string", "maxWords": 8 },
+      "ctaLabel": { "type": "string", "maxWords": 4 },
+      "items": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 5,
+        "items": {
+          "heading": { "type": "string", "maxWords": 6 },
+          "body": { "type": "string", "maxWords": 30 },
+          "mediaLayout": { "type": "enum", "values": ["single-wide", "single-wide-with-app-tiles", "two-uneven"] },
+          "mediaAssets": { "type": "array", "items": { "type": "string" } },
+          "secondaryCtaLabel": { "type": "string", "maxWords": 4, "required": false }
+        }
+      }
+    },
+    "required": ["headline", "items"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "pattern": "none", "detail": "no hover or scroll animation on feature images (measured: --cols custom property did not change on hover or over time)", "reducedMotionFallback": "identical (section has no motion to disable)" },
+  "assetRoles": {
+    "featureImages": { "role": "product-ui-screenshot", "aiGeneration": "may-generate-new", "licensing": "Abstract product/UI imagery, not real people or third-party trademarks — safe to regenerate similar variants." },
+    "meetingAppLogos": { "role": "real-company-logo", "aiGeneration": "must-not-fabricate", "licensing": "Zoom/Google Meet/Microsoft Teams real trademarked logos, used to show real interoperability — reuse exactly, never fabricate a fake integration logo." }
+  }
+}

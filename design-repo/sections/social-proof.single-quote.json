@@ -1,0 +1,23 @@
+{
+  "id": "social-proof.single-quote",
+  "type": "section",
+  "purpose": "A single high-profile customer endorsement (larger format than the testimonials-wall card) with a case-study link, used mid-page on Pricing as a conviction beat between the tiers and the comparison table.",
+  "measuredFrom": "src/pages/Pricing/S02Block.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "quote": { "type": "string", "maxWords": 40 },
+      "name": { "type": "string", "maxWords": 4 },
+      "title": { "type": "string", "maxWords": 8 },
+      "avatarAsset": { "type": "string" },
+      "caseStudyCtaLabel": { "type": "string", "maxWords": 4, "required": false }
+    },
+    "required": ["quote", "name"],
+    "additionalProperties": false
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "static-reveal", "reducedMotionFallback": "renders statically" },
+  "assetRoles": {
+    "avatarAsset": { "role": "real-person-photo", "aiGeneration": "must-not-fabricate", "licensing": "Real named person's photo (e.g. Pedro Franceschi, Brex) — never fabricate a fake endorser." }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "content.resource-links",
+  "type": "section",
+  "purpose": "Surface secondary trust/education content (security, transparency, help docs) as a 3-column card grid.",
+  "measuredFrom": "src/pages/Pricing/S05Resources.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 3, "const": "Resources" },
+      "cards": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "icon": { "type": "string" }, "heading": { "type": "string", "maxWords": 3 }, "body": { "type": "string", "maxWords": 10 } } }
+    },
+    "required": ["headline", "cards"],
+    "additionalProperties": false
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "hover-lift", "detail": "card hover: border darkens, bg brightens, -translate-y-1", "reducedMotionFallback": "hover color change only, no translate" }
+}

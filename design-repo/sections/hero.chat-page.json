@@ -1,0 +1,22 @@
+{
+  "id": "hero.chat-page",
+  "type": "section",
+  "purpose": "Establish the Chat product's specific value prop (AI chat with real work context) with a self-typing prompt demo and 3D-tilted floating UI mockup.",
+  "measuredFrom": "src/pages/Chat/S01AiChatThat.jsx, src/motion/chatpage-hero.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 8 },
+      "subheadline": { "type": "string", "maxWords": 20 },
+      "ctaLabel": { "type": "string", "maxWords": 4 }
+    },
+    "required": ["headline", "subheadline"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true, "mustFollowNav": true },
+  "motion": {
+    "pattern": "typewriter + 3d-tilt-parallax",
+    "detail": "typed prompt via useHeroTyping (50-100ms ticks), 4 wave-bar tiles each on independent 200ms interval, floating input card tilted on rotateX via scroll-driven useHeroTilt",
+    "reducedMotionFallback": "prompt shown fully typed, static tilt at rest position, wave bars static"
+  }
+}

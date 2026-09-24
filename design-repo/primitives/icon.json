@@ -1,0 +1,12 @@
+{
+  "id": "icon",
+  "type": "primitive",
+  "description": "A small vector glyph. UI icons are Lucide/Heroicons rendered inline; brand/connector marks are dedicated SVG asset files.",
+  "measuredFrom": "ASSET_MANIFEST.md 'Icons not saved as files' section",
+  "props": {
+    "source": { "type": "enum", "values": ["lucide-inline", "svg-asset"], "required": true },
+    "name": { "type": "string", "required": true },
+    "size": { "type": "string" }
+  },
+  "lucideIconsUsed": ["mic", "video", "phone", "paperclip", "sliders-horizontal", "calendar", "users", "plus", "sparkles", "arrow-up", "smartphone", "menu", "x"]
+}

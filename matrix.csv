@@ -1,0 +1,29 @@
+section,category,templates,routes,Home,Chat,Enterprise,Pricing,Blog index,Blog article,Careers,Contact sales
+shell.navbar,SHELL,8,8,x,x,x,x,x,x,x,x
+shell.footer,SHELL,8,8,x,x,x,x,x,x,x,x
+conversion.footer-cta,CONVERSION,6,6,,x,,x,x,x,x,x
+hero.marketing,HERO,1,1,x,,,,,,,
+social-proof.logo-wall,PROOF,1,1,x,,,,,,,
+content.statement,CONTENT,1,1,x,,,,,,,
+explainer.how-it-works,EXPLAINER,1,1,x,,,,,,,
+product.chat-demo,EXPLAINER,1,1,x,,,,,,,
+social-proof.testimonials,PROOF,1,1,x,,,,,,,
+feature-grid.marketing,EXPLAINER,1,1,x,,,,,,,
+integration.connector-strip,EXPLAINER,1,1,x,,,,,,,
+conversion.pricing-cta,CONVERSION,1,1,x,,,,,,,
+hero.chat-page,HERO,1,1,,x,,,,,,
+feature-grid.chat-scenarios,EXPLAINER,1,1,,x,,,,,,
+hero.enterprise,HERO,1,1,,,x,,,,,
+trust.security-compliance,EXPLAINER,1,1,,,x,,,,,
+pricing.plan-tiers,PRICING,1,1,,,,x,,,,
+social-proof.single-quote,PROOF,1,1,,,,x,,,,
+pricing.compare-table,PRICING,1,1,,,,x,,,,
+faq.things-worth-noting,PRICING,1,1,,,,x,,,,
+content.resource-links,CONTENT,1,1,,,,x,,,,
+social-proof.tweet-wall,PROOF,1,1,,,,x,,,,
+social-proof.logo-marquee,PROOF,1,1,,,,x,,,,
+content.blog-list,CONTENT,1,1,,,,,x,,,
+content.article-body,CONTENT,1,1,,,,,,x,,
+careers.jobs-page,CONTENT,1,1,,,,,,,x,
+form.contact-sales,CONTENT,1,1,,,,,,,,x
+ROUTE COUNT,,,8,1,1,1,1,1,1,1,1

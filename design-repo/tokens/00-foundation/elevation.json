@@ -1,0 +1,15 @@
+{
+  "$description": "Shadow values actually used on the site. Citations to CLONE_SPEC.md §0.4.",
+  "measuredFrom": "CLONE_SPEC.md:72-79",
+  "shadows": {
+    "shadow-nav-scrolled": { "value": "0 1px 2px rgba(0,0,0,.04), 0 6px 20px rgba(0,0,0,.06)", "usage": "nav pill when scrolled, >=768px" },
+    "shadow-xl-window": { "value": "0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1)", "usage": "app window (shadow-xl)" },
+    "shadow-md-pill": { "value": "0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1)", "usage": "floating pills (shadow-md)" },
+    "shadow-sm-bar": { "value": "0 1px 3px rgba(0,0,0,.1), 0 1px 2px -1px rgba(0,0,0,.1)", "usage": "ask bar (shadow-sm)" },
+    "shadow-chat-card": { "value": "0 8px 12px -4px rgba(0,0,0,.05)", "usage": "chat card" },
+    "shadow-pricing-card": { "value": "0 4px 50px rgba(54,54,53,.25)", "usage": "pricing card" },
+    "shadow-brief-card": { "value": "0 0 0 6px rgba(71,67,42,.05)", "usage": "brief card ring" },
+    "shadow-action-card": { "value": "0 0 0 8px rgba(71,67,42,.05)", "usage": "action cards ring" },
+    "shadow-dropdown-image": { "value": "0 0 36px rgba(0,0,0,.03)", "usage": "dropdown hero image" }
+  }
+}

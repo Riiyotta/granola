@@ -1,0 +1,29 @@
+{
+  "id": "integration.connector-strip",
+  "type": "section",
+  "purpose": "Demonstrate ecosystem breadth via an auto-scrolling strip of AI-tool integration logos (MCP connector positioning).",
+  "measuredFrom": "CLONE_SPEC.md §10 (MCP connector), src/components/Mcp.jsx, src/motion/mcp-strip.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "kicker": { "type": "string", "maxWords": 3 },
+      "headline": { "type": "string", "maxWords": 8 },
+      "ctaLabel": { "type": "string", "maxWords": 4 },
+      "bodyHeading": { "type": "string", "maxWords": 10 },
+      "bodyText": { "type": "string", "maxWords": 40 },
+      "connectors": { "type": "array", "minItems": 8, "maxItems": 12, "items": { "name": "string", "assetPath": "string" } }
+    },
+    "required": ["headline", "connectors"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "rAF-autoscroll-with-cosine-scale",
+    "detail": "continuous scrollLeft += ~30px/s, only while intersecting; per-tile scale 0.59-1.0 by distance from viewport center via cosine falloff; pauses on pointer-down drag",
+    "reducedMotionFallback": "no autoscroll, no per-tile scaling; static row",
+    "measuredFrom": "CLONE_SPEC.md §10"
+  },
+  "assetRoles": {
+    "connectorLogos": { "role": "real-company-logo", "aiGeneration": "must-not-fabricate", "licensing": "11 real trademarked tool logos (Bolt, Figma, Manus, Replit, OpenAI, Claude, Cursor, Lovable, Tasklet, v0, Duckbill) — reuse exactly, never fabricate a fake integration partner." }
+  }
+}

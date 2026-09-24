@@ -1,0 +1,20 @@
+{
+  "id": "social-proof.logo-marquee",
+  "type": "section",
+  "purpose": "A continuously auto-scrolling (not scroll-linked) customer logo marquee, distinct from the static logo-wall grid used on Home.",
+  "measuredFrom": "src/pages/Pricing/S07HelpingTheWorld.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 12 },
+      "logos": { "type": "array", "minItems": 6, "maxItems": 20, "items": { "name": { "type": "string" }, "assetPath": { "type": "string" } } }
+    },
+    "required": ["headline", "logos"],
+    "additionalProperties": false
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "css-marquee-loop", "detail": "CSS marquee animation, --duration 90s, continuous linear loop, edge gradient fade masks", "reducedMotionFallback": "marquee paused, logos shown as a static wrapped row" },
+  "assetRoles": {
+    "logos": { "role": "real-company-logo", "aiGeneration": "must-not-fabricate", "licensing": "Real trademarked customer logos — reuse exactly, never fabricate a fake endorsing company." }
+  }
+}

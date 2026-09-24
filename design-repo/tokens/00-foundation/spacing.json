@@ -1,0 +1,20 @@
+{
+  "$description": "Container widths and side-padding rules, and section vertical-rhythm values, measured directly. Citations to CLONE_SPEC.md header block and per-section §1-12.",
+  "measuredFrom": "CLONE_SPEC.md:6-8",
+  "container": {
+    "maxWidth": "1280px (max-w-7xl)",
+    "sidePadding": {
+      "below_768": "16px",
+      "768_to_1535": "40px",
+      "at_2xl_1536_plus": "0px"
+    }
+  },
+  "sectionVerticalPadding": {
+    "$description": "Real per-section py values, evidence-grounded, used as the closed set for section-level vertical rhythm tokens.",
+    "py-20-compact": "80px",
+    "py-28-standard": "112px",
+    "py-32-large": "128px",
+    "py-40-hero-top": "160px",
+    "measuredFrom": "CLONE_SPEC.md §5,7,8,9,10 (padding values per section)"
+  }
+}

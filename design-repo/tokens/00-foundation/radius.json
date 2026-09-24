@@ -1,0 +1,16 @@
+{
+  "$description": "Border-radius histogram from real usage across the homepage. Citations to CLONE_SPEC.md §0.4.",
+  "measuredFrom": "CLONE_SPEC.md:70-71",
+  "radii": {
+    "radius-full": { "value": "9999px", "usage": "all buttons, pills, nav pill" },
+    "radius-2xl": { "value": "28px", "usage": "chat card, pricing card top corners, brief card" },
+    "radius-xl": { "value": "24px", "usage": "how-it-works app window" },
+    "radius-lg": { "value": "16px", "usage": "how-it-works tiles, rounded-2xl" },
+    "radius-md": { "value": "12px", "usage": "hero app window (rounded-xl), chat chip" },
+    "radius-sm-plus": { "value": "10px", "usage": "\"New\" pill" },
+    "radius-sm": { "value": "8px", "usage": "dropdown panel, dropdown items, video thumbs frame" },
+    "radius-icon": { "value": "6px", "usage": "nav dropdown icons" },
+    "radius-xs": { "value": "4px", "usage": "feature images, floating images, video thumb tiles" },
+    "radius-percent-tile": { "value": "18%", "usage": "meeting-app tiles (percentage radius)" }
+  }
+}

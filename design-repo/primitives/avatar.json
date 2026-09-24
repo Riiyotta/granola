@@ -1,0 +1,11 @@
+{
+  "id": "avatar",
+  "type": "primitive",
+  "description": "A circular/rounded portrait image, used for testimonial portraits, blog author bylines, and team photos.",
+  "measuredFrom": "CLONE_SPEC.md:499-509 (testimonials), src/pages/BlogAppleWatch/S01GranolaForApple.jsx (byline)",
+  "props": {
+    "assetRole": { "type": "enum", "values": ["testimonial-portrait", "author-byline", "team-photo"], "required": true },
+    "size": { "type": "string" },
+    "alt": { "type": "string", "required": true }
+  }
+}

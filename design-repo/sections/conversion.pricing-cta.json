@@ -1,0 +1,23 @@
+{
+  "id": "conversion.pricing-cta",
+  "type": "section",
+  "purpose": "Final homepage conversion push with a dual CTA (download vs. explore pricing) over a branded background image.",
+  "measuredFrom": "CLONE_SPEC.md §11 (Pricing CTA), src/components/Pricing.jsx",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 8 },
+      "body": { "type": "string", "maxWords": 30 },
+      "primaryCtaLabel": { "type": "string", "maxWords": 4 },
+      "secondaryCtaLabel": { "type": "string", "maxWords": 3 },
+      "backgroundAsset": { "type": "string" }
+    },
+    "required": ["headline", "primaryCtaLabel"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustPrecedeFooter": true },
+  "motion": { "pattern": "static-reveal", "reducedMotionFallback": "renders statically" },
+  "assetRoles": {
+    "backgroundAsset": { "role": "abstract-background-photo", "aiGeneration": "may-generate-new", "licensing": "Generic background photography, not real people/trademarks — safe to regenerate." }
+  }
+}

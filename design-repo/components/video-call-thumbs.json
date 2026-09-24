@@ -1,0 +1,10 @@
+{
+  "id": "video-call-thumbs",
+  "type": "component",
+  "description": "A stacked pair of looping muted video-call thumbnails with a mic/video/phone control row. Random pair per load from 15 real named clips.",
+  "measuredFrom": "CLONE_SPEC.md §3 (hero), §6 step 1 mockup; ASSET_MANIFEST.md call-videos table",
+  "props": {
+    "clipNames": { "type": "array", "items": "enum", "values": ["jack","camilla","paavan","rob","sirine","naomi","caroline","nickt","sean","clem","jullien","nickfil","will","angus","xiuting"] },
+    "variant": { "type": "enum", "values": ["hero-parallax", "hiw-step-1"], "required": true }
+  }
+}

@@ -1,0 +1,305 @@
+{
+  "$comment": "Derived directly from the real React/Vite source in src/ (8 mounted routes in src/router.js) and from CLONE_SPEC.md / ASSET_MANIFEST.md, the same evidence base used to build design-repo/ alongside this file. Categories and section ids are this project's own vocabulary, not reused from another project.",
+  "meta": {
+    "source": "granola-clone — a pixel-fidelity clone of a real meeting-notes SaaS product, built React + Vite + Tailwind v3",
+    "mirror": "Homepage measured live via Playwright (see CLONE_SPEC.md); other 7 routes built from src/ and a live-pages/ HTML capture",
+    "status": "measured-from-mirror",
+    "productionApproved": false,
+    "totalRoutes": 8,
+    "totalTemplates": 8,
+    "generatedBy": "ia-builder skill, cross-checked against design-repo/ (built the same session from the same source evidence)"
+  },
+  "categories": {
+    "SHELL": "Chrome present on every route: fixed navigation and the site footer (plus its overscroll reveal panel).",
+    "HERO": "The page-opening block for a given route: headline, primary CTA, and the route's signature visual/demo.",
+    "PROOF": "Social proof: customer logos, testimonials, quotes, tweet walls.",
+    "EXPLAINER": "Product explanation and how-it-works walkthroughs.",
+    "CONVERSION": "Dedicated download/signup/sales CTA blocks, distinct from the CTA embedded in a hero.",
+    "PRICING": "Plan tiers, plan comparison, and pricing-page-specific FAQ/resources.",
+    "CONTENT": "The substantive unique body content of a route: blog list, article prose, careers listings, a contact form."
+  },
+  "sections": {
+    "shell.navbar": {
+      "category": "SHELL",
+      "description": "Fixed top navigation: logo, Features dropdown, Enterprise/Pricing/Blog/Careers links, Talk to sales, Download button. Background/shadow transitions on scroll.",
+      "scope": "Present identically on all 8 routes.",
+      "implementedBy": "src/components/Navbar.jsx"
+    },
+    "shell.footer": {
+      "category": "SHELL",
+      "description": "Site-wide link directory (Features/Product/Company/Resources columns), social icons, copyright line with a hover-swap 'Made with love in Shoreditch' easter egg, and the overscroll footer-reveal image panel.",
+      "scope": "Present identically on all 8 routes.",
+      "implementedBy": "src/components/Footer.jsx, src/components/FooterReveal.jsx"
+    },
+    "conversion.footer-cta": {
+      "category": "CONVERSION",
+      "description": "A 3-block promo banner (bg-oats-green-300) driving a final download/signup conversion, placed just above the footer.",
+      "scope": "Present on 6 routes: every route except Home (uses conversion.pricing-cta instead) and Enterprise (routes to sales, not self-serve), per the cta:true/false flag in src/App.jsx's PAGES map.",
+      "implementedBy": "src/components/footer-cta/index.jsx"
+    },
+    "hero.marketing": {
+      "category": "HERO",
+      "description": "The homepage hero: 'New' badge linking to the Apple Watch post, H1 'The AI notepad for back-to-back meetings', subcopy, accent download CTA, platform availability line, and a sticky app-window demo with GSAP-looped typing/enhance animation plus scroll-driven floating images and video-call thumbs.",
+      "scope": "Home only (1 route).",
+      "implementedBy": "src/components/Hero.jsx"
+    },
+    "social-proof.logo-wall": {
+      "category": "PROOF",
+      "description": "'For the doers' headline sliding under a dark block containing a 12-logo grid of real customer companies (PostHog, Intercom, Figma, Brex, Ramp, Replit, Lovable, Cursor, Bumble, Asana, Vanta, Linear).",
+      "scope": "Home only (1 route).",
+      "implementedBy": "src/components/Doers.jsx"
+    },
+    "content.statement": {
+      "category": "CONTENT",
+      "description": "A single-line brand statement bridging the logo wall and the how-it-works section.",
+      "scope": "Home only (1 route), rendered inline within Hero.jsx's sibling flow.",
+      "implementedBy": "src/components/Hero.jsx"
+    },
+    "explainer.how-it-works": {
+      "category": "EXPLAINER",
+      "description": "Three-stage scroll-synced walkthrough (before/during/after the meeting) with sticky tabs and per-step app-window/brief-card/action-card mockups; separate desktop (sticky tabs) and mobile (stacked) implementations.",
+      "scope": "Home only (1 route).",
+      "implementedBy": "src/components/HowItWorksDesktop.jsx, src/components/HowItWorksMobile.jsx, src/components/HowItWorksIntro.jsx"
+    },
+    "product.chat-demo": {
+      "category": "EXPLAINER",
+      "description": "'Granola Chat' section with a self-typing, prompt-cycling demo card (4 category/prompt pairs) proving contextual memory.",
+      "scope": "Home only (1 route).",
+      "implementedBy": "src/components/Chat.jsx"
+    },
+    "social-proof.testimonials": {
+      "category": "PROOF",
+      "description": "Horizontally drag-scrollable card wall of 5 named, high-profile customer quotes (Linear/Vercel/a16z/Menlo Ventures CEOs and partners) with hover-tinted portrait tiles.",
+      "scope": "Home only (1 route).",
+      "implementedBy": "src/components/Testimonials.jsx"
+    },
+    "feature-grid.marketing": {
+      "category": "EXPLAINER",
+      "description": "5-item feature list (humans not bots, works with all meeting apps, private by default, made for in-person, syncs with calendar), each with a header/body pair and supporting image tile(s).",
+      "scope": "Home only (1 route).",
+      "implementedBy": "src/components/Features.jsx"
+    },
+    "integration.connector-strip": {
+      "category": "EXPLAINER",
+      "description": "MCP connector positioning: kicker, headline, body copy, and an auto-scrolling strip of 11 AI-tool integration logos with cosine-falloff scaling.",
+      "scope": "Home only (1 route).",
+      "implementedBy": "src/components/Mcp.jsx"
+    },
+    "conversion.pricing-cta": {
+      "category": "CONVERSION",
+      "description": "Final homepage conversion card over a background image, with dual CTAs (download vs. view pricing).",
+      "scope": "Home only (1 route) — the route-specific substitute for conversion.footer-cta.",
+      "implementedBy": "src/components/Pricing.jsx"
+    },
+    "hero.chat-page": {
+      "category": "HERO",
+      "description": "Chat page hero: headline/subheadline, a self-typing prompt demo in a 3D-tilted floating card, and animated wave-bar tiles.",
+      "scope": "Chat only (1 route).",
+      "implementedBy": "src/pages/Chat/S01AiChatThat.jsx"
+    },
+    "feature-grid.chat-scenarios": {
+      "category": "EXPLAINER",
+      "description": "3 concrete chat-usage scenario cards (during a meeting, in a folder, across meetings) making the 'ask anything' promise tangible.",
+      "scope": "Chat only (1 route).",
+      "implementedBy": "src/pages/Chat/S02AskAway.jsx"
+    },
+    "hero.enterprise": {
+      "category": "HERO",
+      "description": "Enterprise hero: kicker, headline, body, 'Talk to sales' CTA, and a hero collage image — routes to sales rather than self-serve download.",
+      "scope": "Enterprise only (1 route).",
+      "implementedBy": "src/pages/Enterprise/S01TurnMeetingNotes.jsx"
+    },
+    "trust.security-compliance": {
+      "category": "EXPLAINER",
+      "description": "Trust strip plus an 8-item FAQ accordion addressing SOC2/SSO/data-training objections, reusing the Pricing page's FaqAccordion component directly.",
+      "scope": "Enterprise only (1 route).",
+      "implementedBy": "src/pages/Enterprise/S02SecurityAndCompliance.jsx (imports src/pages/Pricing/FaqAccordion.jsx)"
+    },
+    "pricing.plan-tiers": {
+      "category": "PRICING",
+      "description": "Headline/subheadline and the plan-tier grid (Basic plus paid tiers) with per-plan CTAs — the pricing page's primary conversion surface.",
+      "scope": "Pricing only (1 route).",
+      "implementedBy": "src/pages/Pricing/S01GranolaHowYou.jsx, PlanCta.jsx"
+    },
+    "social-proof.single-quote": {
+      "category": "PROOF",
+      "description": "A single large-format customer endorsement (Pedro Franceschi, Brex) with a case-study link, between the plan tiers and the comparison table.",
+      "scope": "Pricing only (1 route).",
+      "implementedBy": "src/pages/Pricing/S02Block.jsx"
+    },
+    "pricing.compare-table": {
+      "category": "PRICING",
+      "description": "Sticky-header feature-comparison table across all plan tiers.",
+      "scope": "Pricing only (1 route).",
+      "implementedBy": "src/pages/Pricing/S03ComparePlans.jsx"
+    },
+    "faq.things-worth-noting": {
+      "category": "PRICING",
+      "description": "8-item FAQ accordion on pricing/data/compliance objections, sharing the FaqAccordion component with trust.security-compliance.",
+      "scope": "Pricing only (1 route).",
+      "implementedBy": "src/pages/Pricing/S04ThingsWorthNoting.jsx, FaqAccordion.jsx"
+    },
+    "content.resource-links": {
+      "category": "CONTENT",
+      "description": "3-card grid surfacing secondary trust/education content (security, transparency, help docs).",
+      "scope": "Pricing only (1 route).",
+      "implementedBy": "src/pages/Pricing/S05Resources.jsx"
+    },
+    "social-proof.tweet-wall": {
+      "category": "PROOF",
+      "description": "Masonry wall of 6 embedded tweet-style posts, broader/higher-volume social proof than the curated testimonials card wall.",
+      "scope": "Pricing only (1 route).",
+      "implementedBy": "src/pages/Pricing/S06WhatPeopleAre.jsx, tweets-data.js"
+    },
+    "social-proof.logo-marquee": {
+      "category": "PROOF",
+      "description": "Continuously CSS-marquee-scrolling customer logo strip, distinct from the static logo-wall grid on Home.",
+      "scope": "Pricing only (1 route).",
+      "implementedBy": "src/pages/Pricing/S07HelpingTheWorld.jsx"
+    },
+    "content.blog-list": {
+      "category": "CONTENT",
+      "description": "A filterable index of blog/press posts (All/Blog/Press chip filter) — the sole content of the Blog route.",
+      "scope": "Blog only (1 route).",
+      "implementedBy": "src/pages/Blog/S01Blog.jsx"
+    },
+    "content.article-body": {
+      "category": "CONTENT",
+      "description": "Full long-form prose body of a single blog article, with author byline, date, and share popover — the sole content of the BlogAppleWatch route.",
+      "scope": "BlogAppleWatch only (1 route).",
+      "implementedBy": "src/pages/BlogAppleWatch/S01GranolaForApple.jsx, Share.jsx"
+    },
+    "careers.jobs-page": {
+      "category": "CONTENT",
+      "description": "The full careers page as one continuous multi-zone section: hero statement, open-role listings grouped by category, and team stats/photos.",
+      "scope": "Jobs only (1 route).",
+      "implementedBy": "src/pages/Jobs/S01BuildToolsThat.jsx, HeroCollage.jsx, LifeGallery.jsx, TeamSection.jsx"
+    },
+    "form.contact-sales": {
+      "category": "CONTENT",
+      "description": "Headline plus an embedded real third-party Tally lead-capture form — the sole content of the Contact Sales route, and the one deliberate exception to the router's no-outbound-links constraint.",
+      "scope": "Contact Sales only (1 route).",
+      "implementedBy": "src/pages/ContactSales/S01TalkToUs.jsx, TallyContactForm.jsx"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Home",
+      "routeCount": 1,
+      "routes": ["/"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.marketing",
+        "social-proof.logo-wall",
+        "content.statement",
+        "explainer.how-it-works",
+        "product.chat-demo",
+        "social-proof.testimonials",
+        "feature-grid.marketing",
+        "integration.connector-strip",
+        "conversion.pricing-cta",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.chat",
+      "name": "Chat",
+      "routeCount": 1,
+      "routes": ["/chat"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.chat-page",
+        "feature-grid.chat-scenarios",
+        "conversion.footer-cta",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.enterprise",
+      "name": "Enterprise",
+      "routeCount": 1,
+      "routes": ["/enterprise"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.enterprise",
+        "trust.security-compliance",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.pricing",
+      "name": "Pricing",
+      "routeCount": 1,
+      "routes": ["/pricing"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "pricing.plan-tiers",
+        "social-proof.single-quote",
+        "pricing.compare-table",
+        "faq.things-worth-noting",
+        "content.resource-links",
+        "social-proof.tweet-wall",
+        "social-proof.logo-marquee",
+        "conversion.footer-cta",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.blog-index",
+      "name": "Blog index",
+      "routeCount": 1,
+      "routes": ["/blog"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "content.blog-list",
+        "conversion.footer-cta",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.article",
+      "name": "Blog article",
+      "routeCount": 1,
+      "routes": ["/blog/granola-for-apple-watch"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "content.article-body",
+        "conversion.footer-cta",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.careers",
+      "name": "Careers",
+      "routeCount": 1,
+      "routes": ["/jobs"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "careers.jobs-page",
+        "conversion.footer-cta",
+        "shell.footer"
+      ]
+    },
+    {
+      "id": "template.contact-form",
+      "name": "Contact sales",
+      "routeCount": 1,
+      "routes": ["/contact/sales"],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "form.contact-sales",
+        "conversion.footer-cta",
+        "shell.footer"
+      ]
+    }
+  ]
+}

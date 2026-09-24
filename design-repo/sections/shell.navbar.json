@@ -1,0 +1,32 @@
+{
+  "id": "shell.navbar",
+  "type": "section",
+  "purpose": "Persistent site navigation and primary download conversion point, fixed above all page content.",
+  "measuredFrom": "CLONE_SPEC.md §2 (Nav), src/components/Navbar.jsx, src/motion/nav-motion.js, src/motion/nav-scroll-state.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "logoHref": { "type": "string", "const": "/" },
+      "navLinks": {
+        "type": "array",
+        "maxItems": 5,
+        "items": { "label": { "type": "string", "maxWords": 2 }, "href": { "type": "string" } }
+      },
+      "talkToSalesLabel": { "type": "string", "maxWords": 3 },
+      "downloadLabel": { "type": "string", "maxWords": 2 }
+    },
+    "required": ["logoHref", "navLinks", "downloadLabel"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeFirst": true },
+  "motion": {
+    "pattern": "scroll-state-color-transition",
+    "trigger": "scrollY > 0",
+    "duration": "300ms",
+    "easing": "ease-out / cubic-bezier(0,0,.2,1)",
+    "reducedMotionFallback": "no transition; scrolled state applies instantly"
+  },
+  "assetRoles": {
+    "logo": { "role": "brand-logo-exact", "aiGeneration": "must-reuse-exact", "licensing": "Granola's own wordmark/logo — reuse exactly, never regenerate or alter." }
+  }
+}

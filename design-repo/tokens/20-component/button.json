@@ -1,0 +1,32 @@
+{
+  "$description": "Component-scoped token overrides for the button primitive, grounded in CLONE_SPEC.md §0.6 shared components.",
+  "measuredFrom": "CLONE_SPEC.md:84-94",
+  "variants": {
+    "primary-dark": {
+      "bg": "fill.primary-button",
+      "bgHover": "fill.primary-button-hover",
+      "text": "text.primary-inverse",
+      "hoverTransition": "none (instant)",
+      "heightLg": "56px",
+      "heightSm": "48px",
+      "paddingX": "24px",
+      "radius": "radius-full",
+      "trailingIcon": "cta-arrow, 16x16"
+    },
+    "accent": {
+      "bg": "fill.accent",
+      "bgHover": "fill.accent-hover",
+      "text": "text.primary-inverse",
+      "hoverTransition": "none (instant)",
+      "note": "hero CTA only; same box as primary-dark"
+    },
+    "outline": {
+      "bg": "transparent",
+      "bgHover": "surface.tint",
+      "border": "1px solid text.primary",
+      "text": "text.primary",
+      "hoverTransition": "none (instant)",
+      "note": "\"View pricing\" button; same box as primary-dark"
+    }
+  }
+}

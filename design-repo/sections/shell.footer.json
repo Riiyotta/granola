@@ -1,0 +1,37 @@
+{
+  "id": "shell.footer",
+  "type": "section",
+  "purpose": "Site-wide link directory, social presence, and legal/brand close, plus an optional conversion CTA banner.",
+  "measuredFrom": "CLONE_SPEC.md §12 (Footer), src/components/Footer.jsx, src/components/footer-cta/*",
+  "content": {
+    "type": "object",
+    "properties": {
+      "showCta": { "type": "boolean", "description": "Per-route flag from App.jsx PAGES map; true on all routes except Home and Enterprise." },
+      "linkColumns": {
+        "type": "array",
+        "maxItems": 4,
+        "items": {
+          "heading": { "type": "string", "maxWords": 2 },
+          "links": { "type": "array", "maxItems": 10, "items": { "label": { "type": "string", "maxWords": 4 }, "href": { "type": "string" } } }
+        }
+      },
+      "socialLinks": { "type": "array", "maxItems": 3, "items": { "platform": { "enum": ["linkedin", "twitter", "youtube"] }, "href": "string" } },
+      "copyrightLine": { "type": "string", "maxWords": 6 },
+      "madeWithLine": { "type": "string", "maxWords": 6 }
+    },
+    "required": ["linkColumns", "socialLinks", "copyrightLine"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustBeLast": true },
+  "motion": {
+    "pattern": "footer-reveal-overscroll-spring",
+    "spring": { "stiffness": 260, "damping": 24, "mass": 0.9 },
+    "imageFlicker": "150ms hard-cut cycle through 6 images while overscrolled",
+    "copyrightHover": "translateX(-24ch) swap to 'Made with heart in Shoreditch', 700ms/500ms cubic-bezier(.87,0,.13,1)",
+    "reducedMotionFallback": "footer reveal shows first image statically, no cycling; no overscroll spring; copyright hover swap disabled"
+  },
+  "assetRoles": {
+    "footerRevealImages": { "role": "lifestyle-photo-set", "aiGeneration": "may-generate-new", "licensing": "Generic lifestyle/office photography, not depicting real identifiable people — safe to regenerate new variants in the same mood." },
+    "wordmark": { "role": "brand-logo-exact", "aiGeneration": "must-reuse-exact", "licensing": "Granola's own footer wordmark SVG — reuse exactly." }
+  }
+}

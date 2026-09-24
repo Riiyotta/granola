@@ -1,0 +1,16 @@
+{
+  "id": "button",
+  "type": "primitive",
+  "description": "A clickable action element. No content contract beyond its own props.",
+  "measuredFrom": "CLONE_SPEC.md:84-94",
+  "props": {
+    "variant": { "type": "enum", "values": ["primary-dark", "accent", "outline"], "required": true },
+    "size": { "type": "enum", "values": ["lg", "sm"], "default": "lg" },
+    "label": { "type": "string", "maxWords": 4 },
+    "leadingIcon": { "type": "iconRef", "required": false },
+    "trailingIcon": { "type": "iconRef", "required": false },
+    "href": { "type": "string", "required": false },
+    "fullWidthOnMobile": { "type": "boolean", "default": false }
+  },
+  "tokensUsed": ["tokens/20-component/button.json"]
+}

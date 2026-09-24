@@ -1,0 +1,23 @@
+{
+ "sections": [
+  "Hero",
+  "EffortlessNotes",
+  "NotesDemo",
+  "EffortlessNotesMobile",
+  "Doers",
+  "HowItWorks",
+  "HowItWorksTabs",
+  "Chat",
+  "Testimonials",
+  "Features",
+  "Mcp"
+ ],
+ "wrapperClass": "flex flex-col items-center w-full py-0 text-primary",
+ "mainClass": "flex-1 w-full lg:mx-auto",
+ "pageClass": "min-h-svh bg-background",
+ "bodyClass": "antialiased text-content-primary",
+ "tail": [
+  "<div aria-hidden=\"true\" className=\"-mt-px h-px\" />\n"
+ ],
+ "firstBodyDiv": "<div hidden />\n"
+}

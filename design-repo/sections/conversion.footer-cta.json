@@ -1,0 +1,18 @@
+{
+  "id": "conversion.footer-cta",
+  "type": "section",
+  "purpose": "Drive a final download/signup conversion just above the footer, on routes where the visitor is likely bottom-of-funnel (not shown on Home, where the dedicated Pricing CTA section already serves this role, or Enterprise, which routes to sales instead).",
+  "measuredFrom": "src/components/footer-cta/index.jsx, S01Block.jsx, S02ReadyForCalmer.jsx, S03Block.jsx; src/App.jsx PAGES map (cta: true/false per route)",
+  "content": {
+    "type": "object",
+    "properties": {
+      "blockOne": { "type": "string", "maxWords": 40 },
+      "headline": { "type": "string", "maxWords": 12 },
+      "blockThree": { "type": "string", "maxWords": 40 }
+    },
+    "required": ["headline"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "mustPrecedeFooter": true },
+  "motion": { "pattern": "static-reveal", "reducedMotionFallback": "no motion; renders statically" }
+}

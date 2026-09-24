@@ -1,0 +1,41 @@
+{
+  "$description": "Rhythm/adjacency/position rules JSON Schema cannot express. Every rule mirrored in schema/semantic_validate.py's enforcement code — see BUILD-GUIDE.md 2.4 and MASTER-GUIDE.md 3.8/3.18 on keeping these two authoritative sources in agreement.",
+  "rules": [
+    {
+      "id": "CHROME_MUST_WRAP_EVERY_PAGE",
+      "severity": "error",
+      "description": "shell.navbar must be the first node and shell.footer the last node of every template's node list. Grounded in src/App.jsx, which renders <Navbar/> and <Footer/> unconditionally around every route's Page component.",
+      "exception": "None — App.jsx wraps all 8 real routes without exception."
+    },
+    {
+      "id": "ONE_HERO_PER_PAGE",
+      "severity": "error",
+      "description": "At most one hero.* or equivalent page-opening section (hero.marketing, hero.chat-page, hero.enterprise, or the openings-first content.blog-list / content.article-body / careers.jobs-page / form.contact-sales / pricing.plan-tiers) may appear as the second node (immediately after shell.navbar).",
+      "exception": "Templates whose first content section is not literally named hero.* (blog-index, article, careers, contact-form, pricing) still satisfy this rule because each of those sections is itself constrained mustBeFirst+mustFollowNav and none of them repeat — the rule is really 'exactly one page-opening section', not a name match on 'hero'."
+    },
+    {
+      "id": "FOOTER_CTA_ROUTE_GATING",
+      "severity": "warn",
+      "description": "conversion.footer-cta should be present on every template except template.home (which uses conversion.pricing-cta as its bottom-of-funnel CTA instead) and template.enterprise (which routes to sales, not self-serve download). Grounded directly in src/App.jsx's PAGES map: '/': cta:false, '/enterprise': cta:false, all other 6 routes: cta:true.",
+      "exception": "template.home and template.enterprise omit conversion.footer-cta by design; every other template requires it."
+    },
+    {
+      "id": "NO_ADJACENT_SAME_CATEGORY_SOCIAL_PROOF",
+      "severity": "warn",
+      "description": "Two social-proof.* sections should not be directly adjacent on the same template (e.g. testimonials immediately followed by logo-wall) — real templates always separate social-proof beats with a content/feature/conversion section between them.",
+      "exception": "template.pricing places social-proof.tweet-wall immediately before social-proof.logo-marquee — this IS a real, intentional adjacency in the live source (S06WhatPeopleAre directly precedes S07HelpingTheWorld with no section between them), so template.pricing is a named exception to this rule."
+    },
+    {
+      "id": "ACCORDION_FAQ_MAX_ONE_PER_TEMPLATE",
+      "severity": "error",
+      "description": "trust.security-compliance and faq.things-worth-noting (both wrapping the shared faq-accordion component) must not both appear on the same template — each template gets at most one FAQ accordion section.",
+      "exception": "None observed; template.enterprise uses trust.security-compliance, template.pricing uses faq.things-worth-noting, and no template uses both."
+    },
+    {
+      "id": "ARTICLE_ROUTE_EXCLUSIVE",
+      "severity": "error",
+      "description": "content.article-body may only be used on template.article, and template.article may not include any other primary content section (feature-grid, pricing, careers, etc.) beyond chrome + conversion.footer-cta.",
+      "exception": "None."
+    }
+  ]
+}

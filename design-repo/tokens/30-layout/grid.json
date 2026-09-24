@@ -1,0 +1,15 @@
+{
+  "$description": "Layout/grid tokens for the container and common section grid splits, grounded in CLONE_SPEC.md.",
+  "measuredFrom": "CLONE_SPEC.md:6-8",
+  "container": {
+    "maxWidth": "1280px",
+    "centered": true,
+    "sidePadding": { "mobile": "16px", "tablet-desktop": "40px", "wide": "0px" }
+  },
+  "commonSplits": {
+    "two-col-820-448": { "columns": "1fr 28rem", "gap": "12px", "usage": "feature row header, MCP block" },
+    "two-col-60-40": { "columns": "60% 40%", "gap": "32px", "usage": "hero screen 1" },
+    "two-col-equal": { "columns": "1fr 1fr", "usage": "chat section, how-it-works desktop, section-3 headline" },
+    "logo-grid-6": { "columns": "repeat(6, 1fr)", "mobileColumns": "repeat(3, 1fr)", "usage": "logo wall" }
+  }
+}

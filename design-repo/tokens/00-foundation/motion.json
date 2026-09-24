@@ -1,0 +1,52 @@
+{
+  "$description": "Easing curves and durations grounded in real CSS/GSAP/framer-motion evidence across the site. Citations to CLONE_SPEC.md §0.5 and §14 (motion inventory), and src/motion/*.js (24 real motion implementation files).",
+  "measuredFrom": "CLONE_SPEC.md:80-83, CLONE_SPEC.md:625-644 (§14 motion inventory)",
+  "easings": {
+    "ease-in-out": { "value": "cubic-bezier(.4,0,.2,1)" },
+    "ease-out": { "value": "cubic-bezier(0,0,.2,1)" },
+    "ease-in": { "value": "cubic-bezier(.4,0,1,1)" },
+    "ease-out-expo": { "value": "cubic-bezier(.16,1,.3,1)" },
+    "ease-in-out-expo": { "value": "cubic-bezier(.87,0,.13,1)" },
+    "ease-dropdown": { "value": "cubic-bezier(.165,.84,.44,1)", "usage": "features dropdown panel open/close" },
+    "ease-footer-reveal-spring": { "value": "spring(stiffness:260, damping:24, mass:.9)", "usage": "footer reveal panel, framer-motion useSpring", "measuredFrom": "CLONE_SPEC.md §12" }
+  },
+  "durations": {
+    "duration-default-transition": "150ms",
+    "duration-nav-link-hover": "200ms",
+    "duration-nav-download-hover": "300ms",
+    "duration-nav-scroll-bg": "300ms",
+    "duration-dropdown-y": "300ms",
+    "duration-dropdown-opacity": "150ms",
+    "duration-mobile-menu-settle": "310ms",
+    "duration-testimonial-hover": "300ms",
+    "duration-footer-link-hover": "150ms",
+    "duration-footer-copyright-slide": "700ms",
+    "duration-footer-madewith-clip": "500ms",
+    "duration-caret-blink": "1100ms",
+    "duration-spinner-spin": "1000ms",
+    "duration-caret-pulse": "2000ms"
+  },
+  "motionSources": {
+    "$description": "Real motion implementation files this design-repo's motion contracts are grounded in. 24 files confirmed via `ls src/motion/*.js | wc -l`.",
+    "files": [
+      "blog-filter.js", "blog-share.js", "chat-cycle.js", "chatpage-hero.js", "chatpage-tweets.js",
+      "contact-form.js", "footer-reveal.js", "hero-call-videos.js", "hero-demo-loop.js", "hero-hand-drawn.js",
+      "hero-scroll-fallback.js", "hiw-active-step.js", "hiw-center-observer.js", "hiw-demo.js",
+      "hiw-stage-scale.js", "hiw-video-thumbs.js", "jobs-motion.js", "mcp-strip.js", "nav-motion.js",
+      "nav-scroll-state.js", "pricing-page-collapsible.js", "pricing-page-drawer.js", "pricing-page-tweets.js",
+      "testimonials-drag.js"
+    ]
+  },
+  "libraries": {
+    "gsap": "3.14.2",
+    "framerMotion": true,
+    "lottie": false,
+    "smoothScrollLib": false,
+    "note": "No Lottie, no Lenis/smooth-scroll, no page-level load/entrance fade-ins except the specific listed animations. Measured via CLONE_SPEC.md §14."
+  },
+  "reducedMotion": {
+    "$description": "prefers-reduced-motion: reduce behavior, measured directly.",
+    "disables": ["footer image cycling", "MCP connector autoscroll", "chat-chip spring/sweep", "SVG turbulence wobble on hero intro icons"],
+    "showsInstead": "first footer reveal image (static), autoscroll frozen, no chip spring"
+  }
+}

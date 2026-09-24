@@ -1,0 +1,28 @@
+{
+  "$description": "Semantic color roles resolving to foundation values. Reference these by role name, never the raw hex, per token-layering principle.",
+  "roles": {
+    "text.primary": { "foundation": "ink-900" },
+    "text.primary-inverse": { "foundation": "ink-cream" },
+    "text.secondary": { "foundation": "ink-700" },
+    "text.secondary-strong": { "foundation": "ink-800" },
+    "text.tertiary": { "foundation": "ink-600" },
+    "text.tertiary-alt": { "foundation": "ink-500" },
+    "text.body": { "foundation": "ink-body" },
+    "text.accent": { "foundation": "ink-accent" },
+    "surface.page": { "foundation": "white" },
+    "surface.card": { "foundation": "surface" },
+    "surface.card-elevated": { "foundation": "white" },
+    "surface.tint": { "foundation": "surface-tint" },
+    "surface.tint-strong": { "foundation": "surface-tint-strong" },
+    "surface.inverse": { "foundation": "ink-900" },
+    "surface.brand": { "foundation": "oats-green-300" },
+    "surface.brand-light": { "foundation": "oats-green-200" },
+    "border.default": { "foundation": "border-hairline" },
+    "border.stroke": { "foundation": "stroke" },
+    "border.rule": { "foundation": "hr" },
+    "fill.accent": { "foundation": "accent" },
+    "fill.accent-hover": { "foundation": "accent-hover" },
+    "fill.primary-button": { "foundation": "ink-900" },
+    "fill.primary-button-hover": { "foundation": "ink-800" }
+  }
+}

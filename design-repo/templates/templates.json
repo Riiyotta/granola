@@ -1,0 +1,108 @@
+{
+  "$description": "One entry per distinct real page SHAPE observed in src/pages/. Every real route (src/router.js ROUTES, 8 entries) maps to exactly one template. Chrome (shell.navbar, shell.footer) is rendered unconditionally around every page by src/App.jsx and is therefore present in every template's node list.",
+  "measuredFrom": "src/App.jsx (PAGES map, unconditional Navbar+Page+Footer wrapping), src/router.js (ROUTES array), each src/pages/*/index.jsx",
+  "templates": {
+    "template.home": {
+      "description": "The marketing homepage: full-length scroll-driven product story from hero through final conversion CTA. The only route using the dedicated conversion.pricing-cta section and NOT showing conversion.footer-cta (cta:false in App.jsx PAGES map).",
+      "routes": ["/"],
+      "measuredFrom": "src/pages/Home/index.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "hero.marketing", "required": true, "repeatable": false },
+        { "section": "social-proof.logo-wall", "required": true, "repeatable": false },
+        { "section": "content.statement", "required": true, "repeatable": false },
+        { "section": "explainer.how-it-works", "required": true, "repeatable": false },
+        { "section": "product.chat-demo", "required": true, "repeatable": false },
+        { "section": "social-proof.testimonials", "required": true, "repeatable": false },
+        { "section": "feature-grid.marketing", "required": true, "repeatable": false },
+        { "section": "integration.connector-strip", "required": true, "repeatable": false },
+        { "section": "conversion.pricing-cta", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    },
+    "template.chat": {
+      "description": "Product-specific landing page for the Chat feature: hero demo + 3-scenario proof grid.",
+      "routes": ["/chat"],
+      "measuredFrom": "src/pages/Chat/index.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "hero.chat-page", "required": true, "repeatable": false },
+        { "section": "feature-grid.chat-scenarios", "required": true, "repeatable": false },
+        { "section": "conversion.footer-cta", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    },
+    "template.enterprise": {
+      "description": "Enterprise sales-motion landing page: hero routing to sales + trust/security FAQ. No self-serve download CTA and no footer-cta banner (cta:false in App.jsx PAGES map, matching the sales-only conversion path).",
+      "routes": ["/enterprise"],
+      "measuredFrom": "src/pages/Enterprise/index.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "hero.enterprise", "required": true, "repeatable": false },
+        { "section": "trust.security-compliance", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    },
+    "template.pricing": {
+      "description": "Full pricing page: plan tiers, single-quote proof, comparison table, FAQ, resources, tweet wall, and logo marquee. The richest template by section count (7 real sections).",
+      "routes": ["/pricing"],
+      "measuredFrom": "src/pages/Pricing/index.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "pricing.plan-tiers", "required": true, "repeatable": false },
+        { "section": "social-proof.single-quote", "required": true, "repeatable": false },
+        { "section": "pricing.compare-table", "required": true, "repeatable": false },
+        { "section": "faq.things-worth-noting", "required": true, "repeatable": false },
+        { "section": "content.resource-links", "required": true, "repeatable": false },
+        { "section": "social-proof.tweet-wall", "required": true, "repeatable": false },
+        { "section": "social-proof.logo-marquee", "required": true, "repeatable": false },
+        { "section": "conversion.footer-cta", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    },
+    "template.blog-index": {
+      "description": "A single filterable post-list page. Structurally distinct from template.article (this is a listing/filter UI, not prose) — confirmed by reading S01Blog.jsx directly (chip filter + grid, useBlogListFilter), not assumed from the 'Blog' name alone.",
+      "routes": ["/blog"],
+      "measuredFrom": "src/pages/Blog/index.jsx, S01Blog.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "content.blog-list", "required": true, "repeatable": false },
+        { "section": "conversion.footer-cta", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    },
+    "template.article": {
+      "description": "A single long-form blog article: byline, date, share, and prose body. Structurally distinct from template.blog-index (confirmed by reading S01GranolaForApple.jsx directly: article/byline/prose shape, not a list+filter shape).",
+      "routes": ["/blog/granola-for-apple-watch"],
+      "measuredFrom": "src/pages/BlogAppleWatch/index.jsx, S01GranolaForApple.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "content.article-body", "required": true, "repeatable": false },
+        { "section": "conversion.footer-cta", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    },
+    "template.careers": {
+      "description": "A single multi-zone careers page (hero, category-grouped openings, team proof) built as one continuous section rather than a composed sequence of the smaller marketing sections.",
+      "routes": ["/jobs"],
+      "measuredFrom": "src/pages/Jobs/index.jsx, S01BuildToolsThat.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "careers.jobs-page", "required": true, "repeatable": false },
+        { "section": "conversion.footer-cta", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    },
+    "template.contact-form": {
+      "description": "A minimal single-purpose lead-capture page: headline + embedded third-party form, no other marketing content.",
+      "routes": ["/contact/sales"],
+      "measuredFrom": "src/pages/ContactSales/index.jsx, S01TalkToUs.jsx",
+      "nodes": [
+        { "section": "shell.navbar", "required": true, "repeatable": false },
+        { "section": "form.contact-sales", "required": true, "repeatable": false },
+        { "section": "conversion.footer-cta", "required": true, "repeatable": false },
+        { "section": "shell.footer", "required": true, "repeatable": false }
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "link",
+  "type": "primitive",
+  "description": "A text hyperlink, used for nav links and footer links, each with their own hover contract.",
+  "measuredFrom": "CLONE_SPEC.md:96-101, 461-465",
+  "props": {
+    "label": { "type": "string", "maxWords": 4 },
+    "href": { "type": "string", "required": true },
+    "style": { "type": "enum", "values": ["nav", "footer"], "required": true }
+  },
+  "variants": {
+    "nav": { "hoverBg": "surface.tint(f7f7f2 wash)", "transition": "colors 200ms cubic-bezier(.4,0,.2,1)" },
+    "footer": { "underline": "always, decoration transparent", "hoverEffect": "underline-offset 2px->4px only; decoration color has no generated CSS rule so remains invisible", "transition": "all 150ms cubic-bezier(.4,0,.2,1)" }
+  }
+}

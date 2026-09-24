@@ -1,0 +1,46 @@
+{
+  "$description": "Font families, type scale, and weights measured from the live site. Citations to CLONE_SPEC.md §0.1-0.2.",
+  "measuredFrom": "CLONE_SPEC.md:18-30",
+  "fontFamilies": {
+    "melange": { "value": "melange, \"melange Fallback\"", "role": "body font, weights 300/400/500/600 + 400-italic. Weight 430 (font-book) used on buttons/meta chips, synthesized from 400." },
+    "quadrant": { "value": "quadrant, \"quadrant Fallback\"", "role": "all display headings, weight 400 only" }
+  },
+  "fontDisplay": "swap",
+  "typeScale": {
+    "text-2xs": { "size": "11px", "lineHeight": null, "letterSpacing": null },
+    "text-xs": { "size": "12px", "lineHeight": "16px", "letterSpacing": "0.02em" },
+    "text-sm": { "size": "13px", "lineHeight": "16px", "letterSpacing": "0.01em" },
+    "text-base": { "size": "14px", "lineHeight": "18px", "letterSpacing": "0.01em", "note": "site's text-base is 14px, not the Tailwind default 16px" },
+    "text-lg": { "size": "16px", "lineHeight": "20px", "letterSpacing": null },
+    "text-editor": { "size": "16px", "lineHeight": "24px", "letterSpacing": null },
+    "text-xl": { "size": "20px", "lineHeight": "28px", "letterSpacing": null },
+    "text-2xl": { "size": "24px", "lineHeight": "32px", "letterSpacing": null },
+    "text-3xl": { "size": "30px", "lineHeight": "36px", "letterSpacing": null },
+    "text-4xl": { "size": "36px", "lineHeight": "40px", "letterSpacing": null },
+    "text-5xl": { "size": "48px", "lineHeight": "1", "letterSpacing": null },
+    "text-6xl": { "size": "60px", "lineHeight": "1", "letterSpacing": null },
+    "text-7xl": { "size": "72px", "lineHeight": "1", "letterSpacing": null }
+  },
+  "displayHeadingScale": {
+    "$description": "The 'big H2' clamp() scale used by Chat/Features/MCP section headings, and per-breakpoint fixed values used elsewhere (hero H1, pricing CTA H2, testimonials H2). Not part of the standard Tailwind type scale.",
+    "big-h2": { "desktop_1440": "108px", "desktop_1280": "96px", "tablet_768_1023": "72px", "mobile_below_768": "60px", "lineHeight": "0.97", "letterSpacing": "-0.02em", "measuredFrom": "CLONE_SPEC.md:101-102" },
+    "hero-h1": { "desktop_1440": "86.4px", "desktop_1280": "76.8px", "tablet_sm": "72px", "mobile_below_640": "48px", "lineHeight": "0.93", "letterSpacing": "-0.02em", "measuredFrom": "CLONE_SPEC.md:225-227" },
+    "section-h2-medium": { "desktop_lg": "48px", "mobile": "36px", "desktop_3xl": "60px", "lineHeight": "48px_lh_48px_or_1", "letterSpacing": "-0.015em", "measuredFrom": "CLONE_SPEC.md:271,398" },
+    "pricing-cta-h2": { "desktop_lg": "88px", "tablet_md": "60px", "tablet_sm": "48px", "mobile_base": "36px", "lineHeight": "0.98", "letterSpacing": "-0.01em", "measuredFrom": "CLONE_SPEC.md:598" },
+    "testimonials-h2": { "desktop_lg": "60px", "mobile": "36px", "lineHeight": "60px_or_40px", "letterSpacing": "-0.015em", "measuredFrom": "CLONE_SPEC.md:471" }
+  },
+  "fontWeights": {
+    "light": 300,
+    "book": 430,
+    "regular": 400,
+    "medium": 500,
+    "semibold": 600
+  },
+  "letterSpacingTokens": {
+    "tight-heading": "-0.02em",
+    "tight-heading-alt": "-0.015em",
+    "tight-heading-loose": "-0.01em",
+    "loose-body": "0.01em",
+    "loose-label": "0.02em"
+  }
+}

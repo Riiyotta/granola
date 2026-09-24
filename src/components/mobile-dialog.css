@@ -1,0 +1,48 @@
+/* Utilities used by MobileDialog.jsx that Granola's compiled stylesheet doesn't contain.
+   Tailwind v3 isn't used here on purpose: its generic utilities (text-sm, ...) would override
+   the original sheet across the site. Class names mirror Tailwind's so the JSX reads normally. */
+.bg-\[\#f4f4ef\]{background-color:#f4f4ef}
+.border-\[\#1f1f1d\]{border-color:#1f1f1d}
+.border-\[6px\]{border-width:6px;border-style:solid}
+.h-\[104px\]{height:104px}
+.h-\[156px\]{height:156px}
+.h-\[182px\]{height:182px}
+.h-\[20px\]{height:20px}
+.h-\[260px\]{height:260px}
+.h-\[30px\]{height:30px}
+.h-\[42px\]{height:42px}
+.h-\[565px\]{height:565px}
+.left-\[153px\]{left:153px}
+.left-\[189px\]{left:189px}
+.left-\[271px\]{left:271px}
+.left-\[349px\]{left:349px}
+.left-\[450px\]{left:450px}
+.max-h-\[calc\(100svh-32px\)\]{max-height:calc(100svh - 32px)}
+.max-w-\[365px\]{max-width:365px}
+.max-w-\[521px\]{max-width:521px}
+.mt-9{margin-top:2.25rem}
+.right-5{right:1.25rem}
+.rounded-\[20px\]{border-radius:20px}
+.rounded-r-\[3px\]{border-top-right-radius:3px;border-bottom-right-radius:3px}
+.rounded-t-\[30px\]{border-top-left-radius:30px;border-top-right-radius:30px}
+.shadow-2xl{box-shadow:0 25px 50px -12px rgb(0 0 0 / .25)}
+.text-\[\#1f1f1d\]{color:#1f1f1d}
+.text-\[\#d64b3a\]{color:#d64b3a}
+.text-\[11px\]{font-size:11px}
+.text-\[4px\]{font-size:4px}
+.text-\[5px\]{font-size:5px}
+.text-\[6\.5px\]{font-size:6.5px}
+.text-\[8px\]{font-size:8px}
+.top-5{top:1.25rem}
+.top-\[324px\]{top:324px}
+.top-\[333px\]{top:333px}
+.top-\[356px\]{top:356px}
+.top-\[389px\]{top:389px}
+.top-\[402px\]{top:402px}
+.w-\[100px\]{width:100px}
+.w-\[111px\]{width:111px}
+.w-\[194px\]{width:194px}
+.w-\[80px\]{width:80px}
+.w-\[calc\(100vw-32px\)\]{width:calc(100vw - 32px)}
+/* border-[6px] sets every side; keep the phone frame's open bottom (border-b-0). */
+.border-\[6px\].border-b-0{border-bottom-width:0}

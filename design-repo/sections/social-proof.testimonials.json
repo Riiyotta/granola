@@ -1,0 +1,36 @@
+{
+  "id": "social-proof.testimonials",
+  "type": "section",
+  "purpose": "Build trust with named, high-profile customer endorsements in a horizontally scrollable card list.",
+  "measuredFrom": "CLONE_SPEC.md §8 (Testimonials), src/components/Testimonials.jsx, src/motion/testimonials-drag.js",
+  "content": {
+    "type": "object",
+    "properties": {
+      "headline": { "type": "string", "maxWords": 8 },
+      "cards": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 8,
+        "items": {
+          "quote": { "type": "string", "maxWords": 40 },
+          "name": { "type": "string", "maxWords": 4 },
+          "title": { "type": "string", "maxWords": 8, "required": false },
+          "companyLogo": { "type": "string", "required": false },
+          "portraitAsset": { "type": "string" }
+        }
+      }
+    },
+    "required": ["headline", "cards"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true },
+  "motion": {
+    "pattern": "drag-scroll-snap",
+    "detail": "horizontal flex scroller, scroll-snap-type x mandatory, no autoplay/arrows/dots; card hover swaps portrait-tile bg through pink/green/yellow/blue by index, 300ms transition-colors",
+    "reducedMotionFallback": "same drag-scroll behavior (not motion-sensitive beyond the 300ms hover color transition, which is short and non-parallax)"
+  },
+  "assetRoles": {
+    "portraits": { "role": "real-person-photo", "aiGeneration": "must-not-fabricate", "licensing": "5 real named people's real headshots (Karri Saarinen/Linear, Olivia Moore/a16z, Guillermo Rauch/Vercel, Deedy Das/Menlo Ventures, Nat Friedman). Never fabricate a fake person's photo/name/quote attributed as a real endorsement; a generator producing a new page must use its own site's own real, permissioned testimonials or omit this section." },
+    "companyLogos": { "role": "real-company-logo", "aiGeneration": "must-not-fabricate", "licensing": "Real trademarked logos (Linear, Vercel, a16z, Menlo Ventures) — reuse exactly or omit, never invent a fake associated brand." }
+  }
+}

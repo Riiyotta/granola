@@ -1,0 +1,14 @@
+{
+  "$description": "Breakpoints from the site's own Tailwind v4 theme (translated for this Tailwind v3 clone). Citations to CLONE_SPEC.md §0.2.",
+  "measuredFrom": "CLONE_SPEC.md:30",
+  "breakpoints": {
+    "xs": "24rem (384px)",
+    "sm": "40rem (640px)",
+    "md": "48rem (768px)",
+    "lg": "64rem (1024px)",
+    "xl": "80rem (1280px)",
+    "2xl": "96rem (1536px)",
+    "3xl": "120rem (1920px)"
+  },
+  "note": "Some raw CSS also uses a bare min-width:1440px breakpoint (see CLONE_SPEC.md §0)."
+}

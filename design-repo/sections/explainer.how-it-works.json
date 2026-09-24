@@ -1,0 +1,34 @@
+{
+  "id": "explainer.how-it-works",
+  "type": "section",
+  "purpose": "Walk the visitor through the three-stage product workflow (before/during/after the meeting) with a scroll-synced tabbed interface.",
+  "measuredFrom": "CLONE_SPEC.md §6 (How it works), src/components/HowItWorksDesktop.jsx, HowItWorksMobile.jsx, HowItWorksIntro.jsx, src/motion/hiw-*.js (5 files)",
+  "content": {
+    "type": "object",
+    "properties": {
+      "steps": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "tabLabel": { "type": "string", "maxWords": 4 },
+          "heading": { "type": "string", "maxWords": 6 },
+          "body": { "type": "string", "maxWords": 40 },
+          "mediaAsset": { "type": "string" }
+        }
+      }
+    },
+    "required": ["steps"],
+    "additionalProperties": false
+  },
+  "constraints": { "onePerPage": true, "hasDesktopAndMobileVariant": true },
+  "motion": {
+    "pattern": "view-timeline-sticky-tabs + intersection-observer-active-step",
+    "detail": "sticky left-column tab list; progress-fill bar driven by animation-timeline per step (view timeline, range cover 50vh to calc(100% - 50vh)); active step determined by IntersectionObserver rootMargin -50% 0px -50% 0px; step 1 plays a one-shot GSAP typing+enhance demo when activated",
+    "reducedMotionFallback": "tabs switch on click only, no scroll-driven progress fill; step demos render in final static state",
+    "measuredFrom": "CLONE_SPEC.md §6"
+  },
+  "assetRoles": {
+    "stepMedia": { "role": "abstract-texture-photo", "aiGeneration": "may-generate-new", "licensing": "nature-2/nature-3 are generic abstract nature textures, not real identifiable people or trademarks — safe to regenerate similar variants." }
+  }
+}
