@@ -1,0 +1,46 @@
+{
+  "$description": "Canonical, machine-readable index over every approved token in tokens/00-foundation, tokens/10-semantic, tokens/20-component, tokens/30-layout, and tokens/themes -- one authoritative catalog so a generator never has to infer across files. Indexes real keys; does not duplicate values. extraction/verify_all.py's token-catalog-parity check resolves every entry here against its real source file.",
+  "version": "1.0.0",
+  "resolutionOrder": [
+    "00-foundation (raw measured values)",
+    "themes/light (the only theme -- resolves each semantic role to a concrete foundation value)",
+    "10-semantic (role names a generator should reference, e.g. text.primary)",
+    "20-component (component-scoped approved applications)",
+    "30-layout (container/grid)"
+  ],
+  "foundation": {
+    "colors": { "file": "00-foundation/color.json" },
+    "typography": { "file": "00-foundation/typography.json" },
+    "radius": { "file": "00-foundation/radius.json" },
+    "spacing": { "file": "00-foundation/spacing.json" },
+    "breakpoint": { "file": "00-foundation/breakpoint.json" },
+    "elevation": { "file": "00-foundation/elevation.json" },
+    "iconSize": { "file": "00-foundation/icon-size.json" },
+    "motion": { "file": "00-foundation/motion.json" }
+  },
+  "theme": {
+    "file": "themes/light.json",
+    "$description": "The only theme this project ships (see registry.manifest.json for the single-theme note). Resolves each 10-semantic role to a concrete 00-foundation value."
+  },
+  "semantic": {
+    "color": { "file": "10-semantic/color.json", "roles": [
+      "text.primary", "text.primary-inverse", "text.secondary", "text.secondary-strong",
+      "text.tertiary", "text.tertiary-alt", "text.body", "text.accent",
+      "surface.page", "surface.card", "surface.card-elevated", "surface.tint", "surface.tint-strong",
+      "surface.inverse", "surface.brand", "surface.brand-light",
+      "border.default", "border.stroke", "border.rule",
+      "fill.accent", "fill.accent-hover", "fill.primary-button", "fill.primary-button-hover"
+    ]},
+    "typography": { "file": "10-semantic/typography.json", "roles": [
+      "heading.display", "heading.hero", "heading.section", "heading.feature-row", "heading.footer-column",
+      "kicker", "body.default", "body.compact", "body.large",
+      "label.nav", "label.button", "label.button-compact"
+    ]}
+  },
+  "component": {
+    "button": { "file": "20-component/button.json", "$description": "Component-scoped approved token applications -- the only approved way to style buttons; a generator must not introduce raw values here." }
+  },
+  "layout": {
+    "grid": { "file": "30-layout/grid.json" }
+  }
+}

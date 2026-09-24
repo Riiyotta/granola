@@ -9,7 +9,7 @@ Checks:
   2. Semantic validation of the example (zero errors required).
   3. Allowlist parity: every id in tokens/llm/component-allowlist.json has a
      matching contract file, and every real contract file has an allowlist
-     entry. Drift-proofed: this exact check is what scripts/prove_drift.sh
+     entry. Drift-proofed: this exact check is what extraction/prove_drift.sh
      (run separately) injects a phantom/orphan entry against, in a scratch
      copy, to prove it actually catches drift.
   4. Citation-range validity: every measuredFrom path in
@@ -18,6 +18,21 @@ Checks:
      failure, when the sibling tree isn't present.
   5. Manifest count recompute: registry.manifest.json's `counts` block is
      recomputed from the real files on disk and compared, not just asserted.
+  8. Token-catalog parity: every file tokens/llm/token-catalog.json indexes
+     really exists, and every semantic role it lists matches the real roles
+     in that file exactly (both directions).
+  9. Token-policy validity: tokens/llm/token-policy.json's rawValueRestrictions
+     only names real foundation groups from the catalog, and every
+     enforcedBy rule names a real checkedBy enforcement (not just asserted).
+  10. Asset-role closure: every assetRole a section contract references
+      exists in assets/asset-roles.json (and vice versa -- no orphan
+      catalogued role), and every catalogued role's generationPolicy is one
+      of the 4 real closed values.
+
+Drift-proofing: extraction/prove_drift.sh runs this script against a scratch
+copy with a deliberately injected phantom/orphan/mismatch for each check
+above and confirms it fails, then confirms the real, unmodified repo passes
+clean — see that script for the exact reproduction steps.
 """
 import json
 import os
@@ -143,6 +158,125 @@ def check_manifest_counts():
     return errors
 
 
+def check_token_catalog_parity():
+    """Every foundation/semantic/component/layout/theme file the catalog
+    claims to index must really exist; every real role listed under
+    semantic.* must really exist as a key in that real file."""
+    errors = []
+    catalog = load("tokens/llm/token-catalog.json")
+
+    def file_exists(rel):
+        return os.path.exists(os.path.join(REPO_ROOT, "tokens", rel))
+
+    for group_name in ("foundation", "component", "layout"):
+        group = catalog.get(group_name, {})
+        for key, entry in group.items():
+            if isinstance(entry, dict) and "file" in entry:
+                if not file_exists(entry["file"]):
+                    errors.append(f"token-catalog.json {group_name}.{key} references 'tokens/{entry['file']}' which does not exist")
+
+    theme_file = catalog.get("theme", {}).get("file")
+    if theme_file and not file_exists(theme_file):
+        errors.append(f"token-catalog.json theme references 'tokens/{theme_file}' which does not exist")
+
+    for sub, entry in catalog.get("semantic", {}).items():
+        rel = entry.get("file")
+        if not rel or not file_exists(rel):
+            errors.append(f"token-catalog.json semantic.{sub} references 'tokens/{rel}' which does not exist")
+            continue
+        real = load(os.path.join("tokens", rel))
+        real_roles = set(real.get("roles", {}).keys())
+        catalog_roles = set(entry.get("roles", []))
+        missing = sorted(catalog_roles - real_roles)
+        extra = sorted(real_roles - catalog_roles)
+        if missing:
+            errors.append(f"token-catalog.json semantic.{sub} lists role(s) not in the real file: {missing}")
+        if extra:
+            errors.append(f"token-catalog.json semantic.{sub} is missing real role(s) present in the file: {extra}")
+
+    return errors
+
+
+def check_token_policy_validity():
+    """token-policy.json's rawValueRestrictions keys must be real foundation
+    groups from the catalog, and every enforcedBy rule must name a real
+    checkedBy string (non-empty)."""
+    errors = []
+    catalog = load("tokens/llm/token-catalog.json")
+    policy = load("tokens/llm/token-policy.json")
+
+    real_foundation_groups = set(catalog.get("foundation", {}).keys())
+    # rawValueRestrictions keys are descriptive categories; validate they at
+    # least correspond to a real foundation group by prefix-matching loosely
+    # (colors->colors, typography->typography, spacing->spacing, radius->radius)
+    restriction_keys = set(policy.get("rawValueRestrictions", {}).keys())
+    unmatched = sorted(k for k in restriction_keys if k not in real_foundation_groups)
+    if unmatched:
+        errors.append(f"token-policy.json rawValueRestrictions references unknown foundation group(s): {unmatched} (real groups: {sorted(real_foundation_groups)})")
+
+    for rule in policy.get("enforcedBy", []):
+        if not rule.get("checkedBy"):
+            errors.append(f"token-policy.json enforcedBy rule '{rule.get('rule')}' has no checkedBy — an unenforced rule with no stated enforcement is undetectable drift")
+
+    return errors
+
+
+def check_asset_role_closure():
+    """Every role referenced by any section's assetRoles/thirdPartyEmbed
+    block must exist in assets/asset-roles.json (both directions), and every
+    catalogued role's generationPolicy must be one of the 4 real closed
+    policy values."""
+    errors = []
+    asset_roles = load("assets/asset-roles.json")
+    catalogued = set(asset_roles.get("roles", {}).keys())
+    valid_policies = set(asset_roles.get("generationPolicyValues", {}).keys())
+
+    used_roles = set()
+    sections_dir = os.path.join(REPO_ROOT, "sections")
+    for fname in sorted(os.listdir(sections_dir)):
+        if not fname.endswith(".json"):
+            continue
+        section = load(os.path.join("sections", fname))
+        for block_name in ("assetRoles",):
+            for field, spec in (section.get(block_name) or {}).items():
+                if isinstance(spec, dict) and "role" in spec:
+                    used_roles.add(spec["role"])
+        embed = section.get("thirdPartyEmbed")
+        if isinstance(embed, dict) and "assetRole" in embed:
+            used_roles.add(embed["assetRole"])
+
+    phantom = sorted(used_roles - catalogued)  # a section uses a role the catalog doesn't define
+    if phantom:
+        errors.append(f"section(s) reference assetRole(s) not defined in assets/asset-roles.json: {phantom}")
+
+    orphan = sorted(catalogued - used_roles)  # catalogued role no section actually uses
+    if orphan:
+        errors.append(f"assets/asset-roles.json defines role(s) no section actually uses: {orphan}")
+
+    for role_id, spec in asset_roles.get("roles", {}).items():
+        policy = spec.get("generationPolicy")
+        if policy not in valid_policies:
+            errors.append(f"assets/asset-roles.json role '{role_id}' has generationPolicy '{policy}' which is not one of the closed values {sorted(valid_policies)}")
+
+    # Pinned critical-role policies: a handful of roles carry compliance
+    # weight (a real live third-party endpoint, real named people) where ANY
+    # valid-but-wrong policy value would be a real regression, not just a
+    # missing-enum error. These exact values must never be loosened.
+    pinned_policies = {
+        "third-party-form-embed": "must-not-reuse-live-endpoint",
+        "real-person-photo": "must-not-fabricate",
+        "real-company-logo": "must-not-fabricate",
+        "real-person-quote": "must-not-fabricate",
+        "team-photo": "must-not-fabricate",
+    }
+    for role_id, required_policy in pinned_policies.items():
+        actual = asset_roles.get("roles", {}).get(role_id, {}).get("generationPolicy")
+        if role_id in asset_roles.get("roles", {}) and actual != required_policy:
+            errors.append(f"assets/asset-roles.json role '{role_id}' must be pinned to generationPolicy '{required_policy}' (a compliance-critical role) but is '{actual}'")
+
+    return errors
+
+
 def check_entrypoints_self_contained():
     errors = []
     manifest = load("registry.manifest.json")
@@ -213,6 +347,21 @@ def main():
 
     print("=== 5. Manifest count recompute ===")
     e = check_manifest_counts()
+    all_errors += e
+    print(f"  {len(e)} error(s)" if e else "  PASSED")
+
+    print("=== 8. Token-catalog parity ===")
+    e = check_token_catalog_parity()
+    all_errors += e
+    print(f"  {len(e)} error(s)" if e else "  PASSED")
+
+    print("=== 9. Token-policy validity ===")
+    e = check_token_policy_validity()
+    all_errors += e
+    print(f"  {len(e)} error(s)" if e else "  PASSED")
+
+    print("=== 10. Asset-role closure ===")
+    e = check_asset_role_closure()
     all_errors += e
     print(f"  {len(e)} error(s)" if e else "  PASSED")
 

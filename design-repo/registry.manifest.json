@@ -3,7 +3,9 @@
   "status": "design-review-pending",
   "productionApproved": false,
   "defaultTheme": "light",
-  "schemaValidatedThemes": ["light"],
+  "schemaValidatedThemes": [
+    "light"
+  ],
   "allowlistVersion": "1.0.0",
   "repositoryVersion": "1.0.0",
   "pageSpecVersion": "1.0.0",
@@ -17,10 +19,10 @@
     "routes": 8
   },
   "structuralNotes": [
-    "The source project's client-side router (src/router.js) intercepts and makes inert every link that does not resolve to one of its 8 real ROUTES — this is a deliberate 'no external requests / no outbound navigation' build constraint, not an oversight.",
+    "The source project's client-side router (src/router.js) intercepts and makes inert every link that does not resolve to one of its 8 real ROUTES \u2014 this is a deliberate 'no external requests / no outbound navigation' build constraint, not an oversight.",
     "The ContactSales route (/contact/sales) is a deliberate, narrow exception: it embeds a real third-party Tally form widget (src/pages/ContactSales/TallyContactForm.jsx), which does submit outbound to a real third-party service. This is documented explicitly in sections/form.contact-sales.json's thirdPartyEmbed field.",
-    "This project's source (the original site) is a real, live, commercial company. Every asset role touching a real logo, a real named person's photo, or a real quote attributed to a real person carries explicit must-not-fabricate / must-reuse-exact licensing guidance in its owning section contract — see sections/social-proof.logo-wall.json, social-proof.testimonials.json, social-proof.tweet-wall.json, content.article-body.json, careers.jobs-page.json, integration.connector-strip.json, feature-grid.marketing.json, and social-proof.logo-marquee.json.",
-    "src/layout.json (found in the source project) is a stale first-draft artifact — it lists an older Home section list missing the Pricing section and uses mismatched component names versus the current src/pages/Home/index.jsx. It was not used as a build source; templates/templates.json was built directly from the real index.jsx files instead."
+    "This project's source (the original site) is a real, live, commercial company. Every asset role touching a real logo, a real named person's photo, or a real quote attributed to a real person carries explicit must-not-fabricate / must-reuse-exact licensing guidance in its owning section contract \u2014 see sections/social-proof.logo-wall.json, social-proof.testimonials.json, social-proof.tweet-wall.json, content.article-body.json, careers.jobs-page.json, integration.connector-strip.json, feature-grid.marketing.json, and social-proof.logo-marquee.json.",
+    "src/layout.json (found in the source project) is a stale first-draft artifact \u2014 it lists an older Home section list missing the Pricing section and uses mismatched component names versus the current src/pages/Home/index.jsx. It was not used as a build source; templates/templates.json was built directly from the real index.jsx files instead."
   ],
   "entryPoints": {
     "readme": "README.md",
@@ -44,6 +46,9 @@
       "tokens/00-foundation/spacing.json",
       "tokens/00-foundation/icon-size.json"
     ],
-    "theme": "tokens/themes/light.json"
+    "theme": "tokens/themes/light.json",
+    "tokenCatalog": "tokens/llm/token-catalog.json",
+    "tokenPolicy": "tokens/llm/token-policy.json",
+    "assetContract": "assets/asset-roles.json"
   }
 }

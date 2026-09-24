@@ -214,6 +214,70 @@ def main():
     rejected = len(se) > 0 or len(sem_e) > 0
     report("content.article-body + feature-grid.marketing on same page rejected", rejected)
 
+    print("\n=== Contract-layer adversarial cases (token catalog / policy / asset-role closure) ===")
+    # These reuse extraction/verify_all.py's real check functions against an
+    # in-memory-mutated copy of the real data (via monkey-patched `load`), so
+    # the same code that runs in CI/verify_all.py is what's being proven here
+    # -- not a reimplementation that could silently drift from the real checks.
+    sys.path.insert(0, os.path.join(REPO_ROOT, "extraction"))
+    import verify_all  # noqa: E402
+
+    def run_check_with_mutation(check_fn, mutate):
+        real_load = verify_all.load
+        cache = {}
+
+        def patched_load(rel_path):
+            if rel_path not in cache:
+                cache[rel_path] = real_load(rel_path)
+            return copy.deepcopy(cache[rel_path])
+
+        verify_all.load = patched_load
+        try:
+            mutate(cache)  # populate cache with mutated copies before the check reads them
+            return check_fn()
+        finally:
+            verify_all.load = real_load
+
+    # 12. Unknown token ID: token-catalog.json claims a semantic role that
+    # isn't real (an "unknown token ID" a generator might otherwise trust).
+    def mutate_unknown_token_id(cache):
+        catalog = copy.deepcopy(load("tokens/llm/token-catalog.json"))
+        catalog["semantic"]["color"]["roles"].append("text.totally-invented-role")
+        cache["tokens/llm/token-catalog.json"] = catalog
+    errors = run_check_with_mutation(verify_all.check_token_catalog_parity, mutate_unknown_token_id)
+    report("unknown token ID in catalog rejected by token-catalog-parity check", len(errors) > 0, str(errors[:1]))
+
+    # 13. Disallowed raw value category: token-policy.json restricts a
+    # category that isn't a real foundation group (a raw-value rule with no
+    # real target is exactly as bad as failing to restrict a real one).
+    def mutate_disallowed_raw_value(cache):
+        policy = copy.deepcopy(load("tokens/llm/token-policy.json"))
+        policy["rawValueRestrictions"]["shadowBlur"] = "forbidden"
+        cache["tokens/llm/token-policy.json"] = policy
+    errors = run_check_with_mutation(verify_all.check_token_policy_validity, mutate_disallowed_raw_value)
+    report("disallowed/unknown raw-value category rejected by token-policy-validity check", len(errors) > 0, str(errors[:1]))
+
+    # 14. Invalid asset role: a section references an assetRole that was
+    # never catalogued in assets/asset-roles.json.
+    def mutate_invalid_asset_role(cache):
+        section = copy.deepcopy(load("sections/social-proof.single-quote.json"))
+        section["assetRoles"]["avatarAsset"]["role"] = "invalid-role-not-catalogued"
+        cache["sections/social-proof.single-quote.json"] = section
+    # check_asset_role_closure re-lists the sections dir itself and loads each
+    # file via verify_all.load, so patching the one file it will load is enough.
+    errors = run_check_with_mutation(verify_all.check_asset_role_closure, mutate_invalid_asset_role)
+    report("invalid/uncatalogued assetRole on a section rejected by asset-role-closure check", len(errors) > 0, str(errors[:1]))
+
+    # 15. Prohibited asset reuse: the third-party-form-embed role's
+    # generationPolicy is corrupted away from must-not-reuse-live-endpoint,
+    # which would silently permit reusing Granola's live Tally endpoint.
+    def mutate_prohibited_asset_reuse(cache):
+        roles = copy.deepcopy(load("assets/asset-roles.json"))
+        roles["roles"]["third-party-form-embed"]["generationPolicy"] = "may-generate-new"
+        cache["assets/asset-roles.json"] = roles
+    errors = run_check_with_mutation(verify_all.check_asset_role_closure, mutate_prohibited_asset_reuse)
+    report("third-party-form-embed's generationPolicy weakened away from must-not-reuse-live-endpoint is rejected", len(errors) > 0, str(errors[:1]))
+
     print(f"\n{PASS_COUNT} passed, {FAIL_COUNT} failed")
     if FAIL_COUNT:
         sys.exit(1)

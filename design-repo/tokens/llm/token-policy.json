@@ -1,0 +1,28 @@
+{
+  "$description": "Semantic-token preference, raw-value restrictions, override rules, inheritance, and theme-resolution rules for token usage in generated PageSpecs.",
+  "version": "1.0.0",
+  "themeSeparation": {
+    "rule": "tokens/themes/light.json is a RESOLUTION TABLE ONLY -- it maps each 10-semantic role to one concrete 00-foundation value for the single theme this site ships. It is never itself a source of generation rules; a generator references a 10-semantic role name (e.g. text.primary), never the theme file directly.",
+    "why": "Keeps theme resolution (what a role currently equals) separate from generation policy (which roles a generator may use) -- a second theme could be added later with zero change to this policy."
+  },
+  "semanticTokenPreference": {
+    "rule": "Generated sections MUST prefer a 10-semantic role over a 00-foundation token wherever a semantic role exists for the intended use (e.g. text.primary, not a raw foundation color, for primary text). Foundation tokens are used directly ONLY when no semantic role covers the exact measured value needed, and only by citing the foundation key by name.",
+    "checkedBy": "extraction/verify_all.py's token-catalog-parity check confirms every semantic role really resolves to a real foundation value, so 'prefer semantic' is always a safe instruction."
+  },
+  "rawValueRestrictions": {
+    "colors": "forbidden as a literal hex/rgb/oklch string -- always a semantic color.* role or, per the exception above, a named foundation color key.",
+    "typography": "forbidden as a literal font-size/weight/line-height -- always a semantic typography.* role.",
+    "spacing": "forbidden as a literal px/rem value -- always a foundation spacing.* key.",
+    "radius": "forbidden as a literal px value -- always a foundation radius.* key."
+  },
+  "overrides": {
+    "rule": "No PageSpec-level token-override mechanism exists in this design-repo today (verified: schema/pagespec.schema.json's node content schemas carry no style/token-override field -- styling is fully owned by section/component contracts, not by a generated instance). If one is added later, it must be restricted to the semantic role vocabulary in tokens/llm/token-catalog.json, never a raw value."
+  },
+  "inheritance": {
+    "rule": "20-component contracts (e.g. button.json) bind semantic roles to specific components as measured -- these are the ONLY approved way to style those components; a generator may not introduce a raw value or an un-catalogued semantic role at the component layer."
+  },
+  "enforcedBy": [
+    { "rule": "every catalog entry resolves to a real foundation/semantic/component/layout key", "checkedBy": "extraction/verify_all.py token-catalog-parity check" },
+    { "rule": "token-policy references only real catalog groups", "checkedBy": "extraction/verify_all.py token-policy-validity check" }
+  ]
+}

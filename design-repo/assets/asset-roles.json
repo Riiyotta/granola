@@ -1,0 +1,84 @@
+{
+  "$description": "Canonical, machine-readable asset-role vocabulary and reuse/replacement policy, centralizing the allowed role set already declared in each section contract's own assetRoles block. This file does NOT replace those per-section blocks -- their detailed, section-specific licensing prose (real names, exact counts, exact companies) stays exactly where it is; this file is the closed enum + generation-policy layer a generator/RAG pipeline checks against globally. extraction/verify_all.py's asset-role-closure check cross-references every role used in sections/*.json against this file, both directions.",
+  "version": "1.0.0",
+  "sourceProjectNote": "Granola is a real, live company. Real customer logos, real named-person testimonials/photos, real employee photos, and one real live third-party form embed (Tally) appear in this design-repo as real extracted evidence of structure, never as content a generator may reuse for a different brand.",
+  "generationPolicyValues": {
+    "must-not-fabricate": "Real, identifiable content (a real person, a real company, a real quote). A generator may follow the section's STRUCTURE but must never invent a fake instance attributed as real, and must never carry Granola's real instance into a different brand's generated page.",
+    "must-reuse-exact": "Granola's own real brand asset (its logo, its wordmark, its own UI icons). Reuse pixel-exact when generating Granola's own pages; never reuse for a different brand.",
+    "may-generate-new": "Generic, non-identifying imagery (abstract art, stock-style lifestyle photos, illustrative textures, generic product-UI mockups). Safe to regenerate a similar variant for any brand.",
+    "must-not-reuse-live-endpoint": "A real, live third-party integration (e.g. an embedded form). A generator must swap in the generated brand's own real endpoint; must never point a new page at Granola's live third-party endpoint."
+  },
+  "roles": {
+    "real-person-photo": {
+      "generationPolicy": "must-not-fabricate",
+      "description": "A real, named individual's real photo used as social proof (testimonial portrait, video-call clip).",
+      "usedBySections": ["social-proof.testimonials", "social-proof.single-quote", "hero.marketing"]
+    },
+    "real-company-logo": {
+      "generationPolicy": "must-not-fabricate",
+      "description": "A real company's real trademarked logo (customer, integration partner, or investor mark).",
+      "usedBySections": ["social-proof.testimonials", "social-proof.logo-marquee", "social-proof.logo-wall", "feature-grid.marketing", "integration.connector-strip"]
+    },
+    "real-person-quote": {
+      "generationPolicy": "must-not-fabricate",
+      "description": "A real person's real quote/tweet attributed to their real handle.",
+      "usedBySections": ["social-proof.tweet-wall"]
+    },
+    "team-photo": {
+      "generationPolicy": "must-not-fabricate",
+      "description": "A real, named Granola team member's real photo.",
+      "usedBySections": ["careers.jobs-page", "content.article-body"]
+    },
+    "brand-logo-exact": {
+      "generationPolicy": "must-reuse-exact",
+      "description": "Granola's own logo/wordmark.",
+      "usedBySections": ["shell.navbar", "shell.footer"]
+    },
+    "ui-icon-exact": {
+      "generationPolicy": "must-reuse-exact",
+      "description": "Granola's own UI iconography reused verbatim inside product-demo media.",
+      "usedBySections": ["hero.marketing"]
+    },
+    "product-demo-media": {
+      "generationPolicy": "must-not-fabricate",
+      "description": "Real named people's real video-call clips used as product-demo B-roll -- likenesses, not just generic stock footage.",
+      "usedBySections": ["hero.marketing"]
+    },
+    "abstract-illustration": {
+      "generationPolicy": "may-generate-new",
+      "description": "Illustrative/collage art not depicting real people or trademarks.",
+      "usedBySections": ["careers.jobs-page", "hero.enterprise"]
+    },
+    "abstract-background-photo": {
+      "generationPolicy": "may-generate-new",
+      "description": "Generic background photography, not real people/trademarks.",
+      "usedBySections": ["conversion.pricing-cta"]
+    },
+    "abstract-texture-photo": {
+      "generationPolicy": "may-generate-new",
+      "description": "Generic abstract/nature texture imagery.",
+      "usedBySections": ["explainer.how-it-works"]
+    },
+    "product-ui-screenshot": {
+      "generationPolicy": "may-generate-new",
+      "description": "Abstract product/UI imagery, not real people or third-party trademarks.",
+      "usedBySections": ["feature-grid.marketing", "feature-grid.chat-scenarios"]
+    },
+    "editorial-photo": {
+      "generationPolicy": "may-generate-new",
+      "description": "Generic editorial/cover imagery for blog content.",
+      "usedBySections": ["content.article-body"]
+    },
+    "lifestyle-photo-set": {
+      "generationPolicy": "may-generate-new",
+      "description": "Generic abstract/lifestyle imagery not depicting real identifiable people.",
+      "usedBySections": ["hero.marketing", "shell.footer"]
+    },
+    "third-party-form-embed": {
+      "generationPolicy": "must-not-reuse-live-endpoint",
+      "description": "A real, live third-party form widget (Tally) embedded for lead capture. A generator reusing this section's structure for a different brand must point it at that brand's own real form endpoint -- never submit to Granola's live Tally form.",
+      "usedBySections": ["form.contact-sales"],
+      "citation": "src/pages/ContactSales/S01TalkToUs.jsx, TallyContactForm.jsx"
+    }
+  }
+}

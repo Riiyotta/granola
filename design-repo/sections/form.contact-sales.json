@@ -16,6 +16,8 @@
   "motion": { "pattern": "static-reveal", "detail": "embedded Tally iframe is a real third-party outbound integration (src/motion/contact-form.js); this is a deliberate exception to the router's no-outbound-links constraint (see registry.manifest.json structuralNotes)", "reducedMotionFallback": "identical" },
   "thirdPartyEmbed": {
     "provider": "Tally",
-    "note": "This section embeds a real, live third-party form widget. A generator reusing this section contract for a different brand must swap in that brand's own real form endpoint, never submit to Granola's live Tally form."
+    "assetRole": "third-party-form-embed",
+    "note": "This section embeds a real, live third-party form widget. A generator reusing this section contract for a different brand must swap in that brand's own real form endpoint, never submit to Granola's live Tally form.",
+    "$enforced": "assetRole must resolve to assets/asset-roles.json's closed enum (generationPolicy: must-not-reuse-live-endpoint) -- see extraction/verify_all.py asset-role-closure check and schema/tests/adversarial_test.py's prohibited-asset-reuse case."
   }
 }
